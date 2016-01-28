@@ -1,0 +1,69 @@
+
+
+.menu {
+  font-size: 12px;
+}
+
+  .menu li {
+    list-style-type: none;
+  }
+
+    .menu li.active {
+      font-weight: bold;
+    }
+
+    .menu li a {
+      color: #eee;
+    }
+
+#sidebar {
+  background: #2a2c36;
+  color: #eee;
+  position: fixed;
+  height: 100%;
+  width: 150px;
+  overflow: hidden;
+  left: 0;
+  margin: 0;
+  -moz-transition: left ease .25s;
+  -o-transition: left ease .25s;
+  -webkit-transition: left ease .25s;
+  transition: left ease .25s;
+}
+
+  #sidebar.hide-sidebar {
+    left: -150px;
+    -moz-transition: left ease .25s;
+    -o-transition: left ease .25s;
+    -webkit-transition: left ease .25s;
+    transition: left ease .25s;
+  }
+#test {
+    background: #ffffff;
+}
+#wrapper {
+  background: #2a2c36;
+  margin: 0 0 0 150px;
+  -moz-transition: margin-left ease .25s;
+  -o-transition: margin-left ease .25s;
+  -webkit-transition: margin-left ease .25s;
+  transition: margin-left ease .25s;
+}
+
+#footer .navbar {
+    background: #2a2c36;
+}
+
+  #wrapper.hide-sidebar {
+    margin-left: 0;
+    -moz-transition: margin-left ease .25s;
+    -o-transition: margin-left ease .25s;
+    -webkit-transition: margin-left ease .25s;
+    transition: margin-left ease .25s;
+  }
+
+
+#map {
+  width: 100%;
+  height: 600px;
+}

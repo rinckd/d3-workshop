@@ -1,0 +1,19 @@
+{
+  "name": "_d3_js",
+  "description": "misc d3 lessons",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^3.5.14",
+    "bootswatch": "^3.3.6+1"
+  }
+}
