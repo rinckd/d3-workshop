@@ -1,20 +1,22 @@
 
-
+#treeBackground {
+  background-color: #213627;
+}
 .menu {
   font-size: 12px;
 }
 
-  .menu li {
-    list-style-type: none;
-  }
+.menu li {
+  list-style-type: none;
+}
 
-    .menu li.active {
-      font-weight: bold;
-    }
+.menu li.active {
+  font-weight: bold;
+}
 
-    .menu li a {
-      color: #eee;
-    }
+.menu li a {
+  color: #eee;
+}
 
 #sidebar {
   background: #2a2c36;
@@ -54,13 +56,13 @@
     background: #2a2c36;
 }
 
-  #wrapper.hide-sidebar {
-    margin-left: 0;
-    -moz-transition: margin-left ease .25s;
-    -o-transition: margin-left ease .25s;
-    -webkit-transition: margin-left ease .25s;
-    transition: margin-left ease .25s;
-  }
+#wrapper.hide-sidebar {
+  margin-left: 0;
+  -moz-transition: margin-left ease .25s;
+  -o-transition: margin-left ease .25s;
+  -webkit-transition: margin-left ease .25s;
+  transition: margin-left ease .25s;
+}
 
 
 #map {
