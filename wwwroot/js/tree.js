@@ -7,9 +7,7 @@
 
   // make sliders from these:
   var successiveBranchLengthRatio = 0.8;
-  //var theta = 5.5;
   var theta = 0.5;
-  //var theta = 1.5;
   var opacity = -1.4;
   var maxDepth = 12;
   var trunk = {

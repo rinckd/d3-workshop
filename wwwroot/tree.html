@@ -8,9 +8,13 @@
   <link rel="stylesheet" href="lib/bootswatch/yeti/bootstrap.min.css" />
   <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/site.css" />
-</head>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="app/simpleControls.js"></script>
+  <script src="app/app-tree.js"></script>
+  
+  </head>
 
-<body>
+<body ng-app="app-tree">
   <div id="sidebar">
     <ul class="nav">
       <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
@@ -40,7 +44,8 @@
         <div>
             <div class="row">
                 <div class="col-md-12">
-                  <div id="treeBackground"></div>
+                  <place-tree></place-tree>
+                  <!--<div id="treeBackground"></div>-->
                 </div>
             </div>
         </div>
