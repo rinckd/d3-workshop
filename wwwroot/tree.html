@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 
 <head>
   <title>D3 Class</title>
@@ -14,17 +14,14 @@
   <script src="app/treeControls.js"></script>
   </head>
 
-<body ng-app="app" ng-controller="sliderController">
+<body  ng-controller="sliderController">
   <div id="sidebar">
-    <ul class="nav">
-      <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
-      <li><a asp-controller="App" asp-action="About">About</a></li>
-      <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
-    </ul>
-    <div ng-repeat="parameter in parameters">
-      <label>{{ parameter.key }}</label>
-      <input type="range" ng-model="parameter.value" min="0" max="15"/>
-    </div>
+    
+    
+    <label>Depth</label>
+    <input type="range" ng-model="parameters.maxDepth" min="0" max="15"/>
+    <label>Opacity</label>
+    <input type="range" ng-model="parameters.opacity" min="0" max="100"/>
     <button ng-click="update()" class="btn btn-primary">Update</button>
   </div>
   <div id="wrapper">

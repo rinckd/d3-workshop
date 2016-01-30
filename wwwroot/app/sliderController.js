@@ -7,7 +7,12 @@
     
   // }  
   function sliderController($scope) {
-    $scope.parameters =[{key:'maxDepth', value:'11'},{key:'something', value:'20'}];
+    var vm = this;
+    vm.message = 'hello world';
+    $scope.parameters = {
+      maxDepth: '11',
+      opacity: '20'
+    };
     
     $scope.update = function() {
       console.log("controller");

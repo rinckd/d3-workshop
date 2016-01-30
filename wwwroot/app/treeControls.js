@@ -4,30 +4,47 @@
     .directive("placeTree", placeTree);
     
   function placeTree() {
+    var directive = {
+      link: link,
+      restrict: 'E',
+      controller: 'sliderController',
+      scope: { data: "=", buttonControl: '=' }
+    };
+    return directive;
+
     function link(scope, element, attr) {
+      var initialize = false;      
       scope.$watch('data', function(newValue){
-        if (newValue) {
-          var result = {};
-          for (var i = 0; i < newValue.length; i++)
-          {
-            result[newValue[i].key] = newValue[i].value;
-          }
-          maxDepth = result['maxDepth'];
-          console.log(result);
-          console.log(maxDepth);
+        if (!initialize) {
+          initialize = true;
+        } else if (newValue) {
+          console.log(newValue);
+          var number = parseInt(newValue.opacity);
+          console.log(number);
+          opacity = parseInt(newValue.opacity) - 30;
+          update();
+          // var result = {};
+          // for (var i = 0; i < newValue.length; i++)
+          // {
+          //   result[newValue[i].key] = newValue[i].value;
+          // }
+          // maxDepth = result['maxDepth'];
+          // console.log(result);
+          // console.log(maxDepth);
         }
       }, true);
-      
+
       scope.$watch('buttonControl', function (newValue) {
+        if (!initialize)
+        {
+          
+        }
         if (newValue) {
           console.log("hello!");          
         }
       }, true);
       
-      console.log(scope);
-      console.log(scope.data[0]);
-      console.log()
-      var maxDepth = 5;
+      var maxDepth = 8;
       var branches = [];
       var initialLength = 100;
       var baseXPoint = 240;
@@ -75,13 +92,9 @@
         branchTree(rightBranch);
       }
       function update() {
-        
-        branchTree(trunk);
-        d3.select('svg')
-          .selectAll('line')
-          .data(branches)
-          .transition()
-          .style('stroke', '#ffffff')
+        console.log(opacity);
+        //branchTree(trunk);
+        d3.selectAll('line')
           .attr('x1', function (d) { return d.x1; })
           .attr('y1', function (d) { return d.y1; })
           .attr('x2', function (d) { return d.x2; })
@@ -102,7 +115,7 @@
           .data(branches)
           .enter()
           .append('line')
-          .style('stroke', '#ffffff')
+          .style('stroke', '#fff')
           .attr('x1', function (d) { return d.x1; })
           .attr('y1', function (d) { return d.y1; })
           .attr('x2', function (d) { return d.x2; })
@@ -113,11 +126,5 @@
         
       create();
     }
-    return {
-      link: link,
-      restrict: 'E',
-      controller: 'sliderController',
-      scope: { data: "=", buttonControl: '=' }
-    };
   }
 })();
