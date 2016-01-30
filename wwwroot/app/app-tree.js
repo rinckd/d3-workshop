@@ -1,4 +1,4 @@
 (function () {
-  angular.module("app-tree", ["simpleControls"]);
+  angular.module('app', []);
   
 })();

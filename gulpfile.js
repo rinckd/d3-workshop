@@ -25,11 +25,11 @@ gulp.task('serve', ['style'], function() {
     },
     tasks: ['style'],
     watch: jsFiles
-  }
+  };
   return nodeMon(options)
     .on('restart', function(ev) {
       console.log('restarting...');
-    })
+    });
 });
 
 function startBrowserSync() {
@@ -46,13 +46,14 @@ function startBrowserSync() {
       forms: true,
       scroll: true
     },
+    browser: "google chrome",
     injectChanges: true,
     logFileChanges: true,
     logLevel: 'debug',
     logPrefix: 'gulp-patterns',
     notify: true,
     reloadDelay: 1000
-  }
+  };
   console.log('starting browser-sync on port 8080');
   browserSync(options);
 }

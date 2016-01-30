@@ -33,16 +33,24 @@
   transition: left ease .25s;
 }
 
-  #sidebar.hide-sidebar {
-    left: -150px;
-    -moz-transition: left ease .25s;
-    -o-transition: left ease .25s;
-    -webkit-transition: left ease .25s;
-    transition: left ease .25s;
-  }
+#sidebar.hide-sidebar {
+  left: -150px;
+  -moz-transition: left ease .25s;
+  -o-transition: left ease .25s;
+  -webkit-transition: left ease .25s;
+  transition: left ease .25s;
+}
+
 #test {
     background: #ffffff;
 }
+#sidebarToggle {
+  color: #ffffff;
+  font-size: 25px; 
+  background: #2a2c36;
+  margin: 0 0 0 10px;
+}
+
 #wrapper {
   background: #2a2c36;
   margin: 0 0 0 150px;

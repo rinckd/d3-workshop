@@ -5,22 +5,27 @@
   <title>D3 Class</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="lib/bootswatch/yeti/bootstrap.min.css" />
   <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/site.css" />
   <script src="lib/angular/angular.min.js"></script>
-  <script src="app/simpleControls.js"></script>
-  <script src="app/app-tree.js"></script>
   
+  <script src="app/app-tree.js"></script>
+  <script src="app/sliderController.js"></script>  
+  <script src="app/treeControls.js"></script>
   </head>
 
-<body ng-app="app-tree">
+<body ng-app="app" ng-controller="sliderController">
   <div id="sidebar">
     <ul class="nav">
       <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
       <li><a asp-controller="App" asp-action="About">About</a></li>
       <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
     </ul>
+    <div ng-repeat="parameter in parameters">
+      <label>{{ parameter.key }}</label>
+      <input type="range" ng-model="parameter.value" min="0" max="15"/>
+    </div>
+    <button ng-click="update()" class="btn btn-primary">Update</button>
   </div>
   <div id="wrapper">
     <nav class="navbar navbar-inverse">
@@ -39,12 +44,13 @@
           </li>
         </ul>
       </div>
+
     </nav>
     <div id="main" class="container-fluid">
         <div>
             <div class="row">
                 <div class="col-md-12">
-                  <place-tree></place-tree>
+                  <place-tree data="parameters" buttonControl="updateTree"></place-tree>
                   <!--<div id="treeBackground"></div>-->
                 </div>
             </div>
