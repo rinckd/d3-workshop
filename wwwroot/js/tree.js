@@ -32,7 +32,7 @@
       y2: branch.y2 - branch.length * Math.cos(branch.angle),
       angle: branch.angle - theta,
       length: branch.length * successiveBranchLengthRatio,
-      depth: branch.depth + 1,
+      depth: branch.depth + 1
     };
     branchTree(leftBranch);
 
@@ -43,7 +43,7 @@
       y2: branch.y2 - branch.length * Math.cos(branch.angle),
       angle: branch.angle + theta,
       length: branch.length * successiveBranchLengthRatio,
-      depth: branch.depth + 1,
+      depth: branch.depth + 1
     };
     branchTree(rightBranch);
   }
