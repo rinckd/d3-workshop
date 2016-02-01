@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "amd",
+    "outDir": "ts-built",
+    "rootDir": "Typescript"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

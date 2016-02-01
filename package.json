@@ -4,7 +4,11 @@
   "description": "",
   "main": "server/app.js",
   "dependencies": {
-    "express": "^4.13.4"
+    "JSONStream": "~1.0.7",
+    "csv-streamify": "~3.0.3",
+    "express": "^4.13.4",
+    "fs": "0.0.2",
+    "shelljs": "^0.5.3"
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",

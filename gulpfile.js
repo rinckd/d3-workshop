@@ -15,6 +15,24 @@ gulp.task('style', function() {
       .pipe(jscs.reporter());
 });
 
+// gulp.task('csv', ['style'], function() {
+//   var options = {
+//     script: 'server/csv.js',
+//     delayTime: 1,
+//     env: {
+//       'PORT': 8080
+//     },
+//     tasks: ['style'],
+//   };
+//   gulp.task('server', function (cb) {
+//   exec('node server/csv.js', function (err, stdout, stderr) {
+//     console.log(stdout);
+//     console.log(stderr);
+//     cb(err);
+//   });
+// })
+// });
+
 gulp.task('serve', ['style'], function() {
   startBrowserSync();
   var options = {
