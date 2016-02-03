@@ -1,0 +1,21 @@
+<!DOCTYPE html >
+<html >
+<head>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>3D Scatter Plot</title>
+  <script type="text/javascript" src="lib/d3/d3.min.js"></script>
+  <script type="text/javascript" src="lib/x3dom/x3dom.js"></script>
+  <script type="text/javascript" src="js/surface.js"></script>
+  <link rel="stylesheet" type="text/css"  href="lib/x3dom/x3dom.css"/>
+</head>
+<body>
+<div id="divPlot"></div>
+<script>
+  d3.select('html').style('height','100%').style('width','100%')
+  d3.select('body').style('height','100%').style('width','100%')
+  d3.select('#divPlot').style('width', "500px").style('height', "500px")
+  scatterPlot3d( d3.select('#divPlot'));
+</script>
+</body>
+</html>
