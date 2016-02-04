@@ -10,9 +10,9 @@ fs.readFile('server/EmploymentStatus', 'utf8', function (err,data) {
   }
   var results = data.split('\n');
   var jsonObject = [];
-  var finalResponse = { token: "12341234", states: null, data: null };
+  var finalResponse = { token: "12341234", states: null,  data: null };
   
-  for (var i = 0; i < results.length; i++) 
+  for (var i = 0; i < results.length; i++)
   {
     var jsonTwo = [];
     var breakCheck1 = false;
@@ -23,8 +23,8 @@ fs.readFile('server/EmploymentStatus', 'utf8', function (err,data) {
         if (j[0] === '') {
           if (j.length === 69) {
             // Year and Month
-            console.log('wat');
-            console.log(results[i]);
+            var dateString = j[67] + "," + j[68];
+            dateTest = new Date(dateString);
             finalResponse.states = j;
           } else if (j.length === 1) {
             breakCheck1 = true;
