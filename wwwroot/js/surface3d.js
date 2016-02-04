@@ -109,7 +109,6 @@
     };
     this.transition = function () {
       var transition = d3.selection.prototype.transition.bind(node)();
-      colourFunction = null;
       heightFunction = null;
       transition.surfaceHeight = this.surfaceHeight;
       transition.surfaceColor = this.surfaceColor;

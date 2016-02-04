@@ -60,10 +60,7 @@
   var data_json;
   d3.json("data/hourly_load_profile.json", function (error, json) {
     if (error) return console.warn(error);
-    console.log("hello!");
     data_json = json;
-    var ul = d3.select('body')
-        .append('ul');
     var svg = d3.select('body')
         .append('svg')
         .attr('height', height)
@@ -79,7 +76,6 @@
           var c = d3.hsl((d + 100), 0.6, 0.5).rgb();
           return "rgb(" + parseInt(c.r) + "," + parseInt(c.g) + "," + parseInt(c.b) + ")";
         });
-
     svg.on("mousedown", function () {
       drag = [d3.mouse(this), yaw, pitch];
     }).on("mouseup", function () {
@@ -94,7 +90,7 @@
       }
     });
   });
-  
+
 </script>
 </body>
 </html>

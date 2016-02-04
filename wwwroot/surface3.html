@@ -8,12 +8,6 @@
       padding: 10px;
     }
 
-    svg path {
-      stroke: #000;
-      stroke-width: 1px;
-      stroke: rgba(0, 0, 0, 0.2);
-    }
-
     .axis path {
       fill: none;
       stroke: #777;
@@ -37,8 +31,7 @@
   </style>
 </head>
 <body>
-<h1>D3.js Surface Plots</h1>
-<p>Drag graph to change view</p>
+
 <script type="text/javascript" src="lib/d3/d3.min.js"></script>
 <script src="js/surface3d.js"></script>
 <script>
@@ -50,6 +43,8 @@
     bottom: 40,
     left: 50
   };
+  var numberOfHours = 24;
+
 
   var data_json;
   d3.json("data/hourly_load_profile.json", function (error, json) {
@@ -57,57 +52,28 @@
 
     data_json = json;
 
-    var data = [{
-      "sale": "202",
-      "year": "2000"
-    }, {
-      "sale": "215",
-      "year": "2001"
-    }, {
-      "sale": "179",
-      "year": "2002"
-    }, {
-      "sale": "199",
-      "year": "2003"
-    }, {
-      "sale": "134",
-      "year": "2003"
-    }, {
-      "sale": "176",
-      "year": "2010"
-    }];
+    var renderSurface = function () {
+      var originalData = node.datum();
+      var data = getTransformedData();
+      var xlength = data.length;
+      var ylength = data[0].length;
+      var d0 = [];
+      for (var x = 0; x < xlength - 1; x++) {
+        for (var y = 0; y < ylength - 1; y++) {
+          var depth = data[x][y][2] + data[x + 1][y][2] + data[x + 1][y + 1][2] + data[x][y + 1][2];
+          d0.push({
+            path: 'M' + (data[x][y][0] + displayWidth / 2).toFixed(10) + ',' + (data[x][y][1] + displayHeight / 2).toFixed(10) +
+            'L' + (data[x + 1][y][0] + displayWidth / 2).toFixed(10) + ',' + (data[x + 1][y][1] + displayHeight / 2).toFixed(10) +
+            'L' + (data[x + 1][y + 1][0] + displayWidth / 2).toFixed(10) + ',' + (data[x + 1][y + 1][1] + displayHeight / 2).toFixed(10) +
+            'L' + (data[x][y + 1][0] + displayWidth / 2).toFixed(10) + ',' + (data[x][y + 1][1] + displayHeight / 2).toFixed(10) + 'Z',
+            depth: depth, data: originalData[x][y]
+          });
+        }
+      }
 
-    var load_profile = [{
-      "Name": "Load Profile",
-      "Hours": [
-      [
-        41.22171,
-        49.91769,
-        57.8648,
-        44.20398,
-        54.68694,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        54.08496,
-        51.62207,
-        61.00882,
-        48.38789,
-        61.54568,
-        74.64898,
-        85.29063,
-        92.5181
-      ]]
-    }];
-
+//    var lineData = load_profile.Hours.map(function (_, idx) {
+//      return { time: idx, data: load_profile.Hours[0][idx] };
+//    });
     var svg = d3.select('body')
         .append('svg')
         .attr('height', height)
@@ -115,38 +81,41 @@
 
     var xScale = d3.scale.linear()
       .range([margins.left, width - margins.right])
-      .domain([0,10]);
+      .domain([0,numberOfHours]);
 
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
-      .domain([134,215]);
+      .domain([0,100]);
     var xAxis = d3.svg.axis()
             .scale(xScale);
 
     var yAxis = d3.svg.axis()
             .scale(yScale)
             .orient('left');
+
     var lineGenerator = d3.svg.line()
-            .x(function(data, iterator) {
+            .x(function(d, iterator) {
               return xScale(iterator);
             })
-            .y(function(data) {
-              return yScale(data.sale);
+            .y(function(d) {
+              return yScale(d);
             })
             .interpolate("basis");
 
     svg.append('path')
-            .attr('d', lineGenerator(data))
+            .attr('d', lineGenerator(data_json.Hours[1]))
             .attr('stroke', 'green')
             .attr('stroke-width', 2)
             .attr('fill', 'none');
     svg.append("g")
             .call(xAxis)
+            .attr('class', 'axis')
             .attr('transform', 'translate(0, ' + (height - margins.bottom) + ')');
 
     svg.append("g")
             .call(yAxis)
-            .attr('transform', 'translate(' + (margins.left) + ',0)');
+            .attr('transform', 'translate(' + (margins.left) + ',0)')
+            .attr('class', 'axis');
 
 
 
