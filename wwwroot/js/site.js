@@ -1,4 +1,5 @@
 // site.js
+
 (function () {
 
   var $sidebarAndWrapper = $('#sidebar,#wrapper');

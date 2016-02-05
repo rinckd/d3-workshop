@@ -4,31 +4,17 @@
     var displayWidth, displayHeight;
     var trans;
 
-    var getHeights = function () {
-      var data = node.datum();
-      var output = [];
-      var xlength = data.length;
-      var ylength = data[0].length;
-      for (var x = 0; x < xlength; x++) {
-        output.push(t = []);
-        for (var y = 0; y < ylength; y++) {
-          var value = heightFunction(data[x][y], x, y);
-          t.push(value);
-        }
-      }
-      return output;
-    };
     var transformPoint = function (point) {
       var x = transformPrecalc[0] * point[0] + transformPrecalc[1] * point[1] + transformPrecalc[2] * point[2];
       var y = transformPrecalc[3] * point[0] + transformPrecalc[4] * point[1] + transformPrecalc[5] * point[2];
       var z = transformPrecalc[6] * point[0] + transformPrecalc[7] * point[1] + transformPrecalc[8] * point[2];
+      //console.log(x,y,z);
       return [x, y, z];
     };
     var getTransformedData = function () {
       var data = node.datum();
-      if (!heightFunction) return [[]];
       var t, output = [];
-      var heights = getHeights();
+      var heights = data;
       var xlength = data.length;
       var ylength = data[0].length;
       for (var x = 0; x < xlength; x++) {
