@@ -52,24 +52,6 @@
 
     data_json = json;
 
-    var renderSurface = function () {
-      var originalData = node.datum();
-      var data = getTransformedData();
-      var xlength = data.length;
-      var ylength = data[0].length;
-      var d0 = [];
-      for (var x = 0; x < xlength - 1; x++) {
-        for (var y = 0; y < ylength - 1; y++) {
-          var depth = data[x][y][2] + data[x + 1][y][2] + data[x + 1][y + 1][2] + data[x][y + 1][2];
-          d0.push({
-            path: 'M' + (data[x][y][0] + displayWidth / 2).toFixed(10) + ',' + (data[x][y][1] + displayHeight / 2).toFixed(10) +
-            'L' + (data[x + 1][y][0] + displayWidth / 2).toFixed(10) + ',' + (data[x + 1][y][1] + displayHeight / 2).toFixed(10) +
-            'L' + (data[x + 1][y + 1][0] + displayWidth / 2).toFixed(10) + ',' + (data[x + 1][y + 1][1] + displayHeight / 2).toFixed(10) +
-            'L' + (data[x][y + 1][0] + displayWidth / 2).toFixed(10) + ',' + (data[x][y + 1][1] + displayHeight / 2).toFixed(10) + 'Z',
-            depth: depth, data: originalData[x][y]
-          });
-        }
-      }
 
 //    var lineData = load_profile.Hours.map(function (_, idx) {
 //      return { time: idx, data: load_profile.Hours[0][idx] };
