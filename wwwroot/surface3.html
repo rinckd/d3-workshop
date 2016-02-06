@@ -17,7 +17,9 @@
       font-family: Lato, serif;
       font-size: 13px;
     }
-
+    .line3 {
+      fill: red;
+    }
     svg {
       border: 1px solid #DED8BF;
       background-color: #f4f4d9;
@@ -40,13 +42,11 @@
 <script type="text/javascript" src="lib/d3/d3.min.js"></script>
 <script src="js/surface3d.js"></script>
 <script>
-  var width = 1100;
+  var width = 800;
   var height = 400;
   var margins = {
-    top: 20,
-    right: 20,
-    bottom: 40,
-    left: 50
+    top: 80,
+    left: 15
   };
   var numberOfHours = 24;
   var data_json;
@@ -58,34 +58,12 @@
 
   d3.json("data/hourly_load_profile.json", function (error, json) {
     if (error) return console.error(error);
-
     data_json = json;
-
-//    var lineData = load_profile.Hours.map(function (_, idx) {
-//      return { time: idx, data: load_profile.Hours[0][idx] };
-//    });
     var svg = d3.select('body')
-        .append('svg')
-        .attr('height', height)
-        .attr('width', width);
+      .append('svg')
+      .attr('height', height)
+      .attr('width', width);
 
-    var xScale = d3.scale.linear()
-      .range([margins.left, width - margins.right])
-      .domain([0,numberOfHours]);
-
-    var yScale = d3.scale.linear()
-      .range([height - margins.bottom, margins.top])
-      .domain([0,100]);
-    var xAxis = d3.svg.axis()
-            .scale(xScale);
-
-    var yAxis = d3.svg.axis()
-            .scale(yScale)
-            .orient('left');
-    var colorFunction = function(d) {
-        var c = d3.hsl((d + 100), 0.6, 0.5).rgb();
-        return "rgb(" + parseInt(c.r) + "," + parseInt(c.g) + "," + parseInt(c.b) + ")";
-    }
     var transformPoint = function (point) {
       var cosA = Math.cos(pitch);
       var sinA = Math.sin(pitch);
@@ -107,7 +85,6 @@
     };
 
     var getTransformedData = function () {
-      //var data = node.datum();
       var t, output = [];
       var heights = data_json.Hours;
       var xlength = data_json.Hours.length;
@@ -115,14 +92,17 @@
       for (var x = 0; x < xlength; x++) {
         output.push(t = []);
         for (var y = 0; y < ylength; y++) {
-          t.push(transformPoint([(x - xlength / 2) / (xlength * 1.8) * width, heights[x][y], (y - ylength / 2) / (ylength * 1.8) * width]));
+
+          t.push(transformPoint([(x - (xlength - margins.top) / 2) / (xlength * 1.8) * width, heights[x][y], (y - (ylength - margins.left) / 2) / (ylength * 1.8) * width]));
         }
       }
       return output;
     }
     var renderSurface = function () {
       var originalData = data_json.Hours;
+      console.log(data_json.Hours[3]);
       var data = getTransformedData();
+      console.log(data[3]);
       var xlength = data_json.Hours.length;
       var ylength = data_json.Hours[0].length;
       var d0 = [];
@@ -157,12 +137,28 @@
           var c = d3.hsl((d.data + 100), 0.6, 0.5).rgb();
           return "rgb(" + parseInt(c.r) + "," + parseInt(c.g) + "," + parseInt(c.b) + ")";
       });
+//      dr.on('mouseover', function(d, i) {
+//        var currentState = this;
+//        console.log(currentState);
+//        d3.select(this.getAttribute('class')).style('color', 'red');
+//      })
+//      .on('mouseout', function(d, i) {
+//        d3.selectAll('path')
+//            .style({
+//              'fill-opacity':.7
+//            });
+//      });
     };
     renderSurface();
 
     svg.on("mousedown", function () {
       drag = [d3.mouse(this), yaw, pitch];
-    }).on("mouseup", function () {
+    }).on('mouseover', function () {
+      console.log('h');
+      var change_color = svg.selectAll("." + this.getAttribute('class'));
+      console.log(change_color);
+    })
+      .on("mouseup", function () {
       drag = false;
     }).on("mousemove", function () {
       if (drag) {
@@ -176,29 +172,14 @@
       }
     });
 
-//    var lineGenerator = d3.svg.line()
-//            .x(function(d, iterator) {
-//              return xScale(iterator);
-//            })
-//            .y(function(d) {
-//              return yScale(d);
-//            })
-//            .interpolate("basis");
-//
-//    svg.append('path')
-//            .attr('d', lineGenerator(data_json.Hours[1]))
-//            .attr('stroke', 'green')
-//            .attr('stroke-width', 2)
-//            .attr('fill', 'none');
-    svg.append("g")
-            .call(xAxis)
-            .attr('class', 'axis')
-            .attr('transform', 'translate(0, ' + (height - margins.bottom) + ')');
+    svg.append('rect')
+        .attr('x', 590)
+        .attr('y', 10)
+        .attr('height', 380)
+        .attr('width', 200)
+        .attr('fill-opacity', 0.4)
+        .style('color', 'red');
 
-    svg.append("g")
-            .call(yAxis)
-            .attr('transform', 'translate(' + (margins.left) + ',0)')
-            .attr('class', 'axis');
   });
   
 </script>

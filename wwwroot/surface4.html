@@ -1,0 +1,88 @@
+<html>
+<head>
+  <title>D3</title>
+  <meta charset="utf-8" />
+  <script src="lib/d3/d3.min.js" type="text/JavaScript"></script>
+  <script src="js/colorbrewer.js" type="text/JavaScript"></script>
+  <script src="js/queue.js" type="text/JavaScript"></script>
+</head>
+<style>
+  svg {
+    height: 500px;
+    width: 500px;
+    border: 1px solid gray;
+  }
+
+</style>
+<body>
+
+<div id="viz">
+  <svg>
+  </svg>
+</div>
+<div id="controls"> </div>
+</body>
+<footer>
+
+  <script>
+    queue()
+        .defer(d3.csv, "data/nodelist.csv")
+        .defer(d3.csv, "data/edgelist.csv")
+        .await(function(error, file1, file2) { createAdjacencyMatrix(file1, file2); });
+
+    function createAdjacencyMatrix(nodes,edges) {
+      var edgeHash = {};
+      for (var x in edges) {
+        var id = edges[x].source + "-" + edges[x].target;
+        edgeHash[id] = edges[x];
+      }
+      var matrix = [];
+      //create all possible edges
+      for (var a in nodes) {
+        for (var b in nodes) {
+          var grid = {id: nodes[a].id + "-" + nodes[b].id, x: b, y: a, weight: 0};
+          if (edgeHash[grid.id]) {
+            grid.weight = edgeHash[grid.id].weight;
+          }
+
+          matrix.push(grid);
+        }
+      }
+      console.log(matrix);
+
+      d3.select("svg")
+          .append("g")
+          .attr("transform", "translate(50,50)")
+          .attr("id", "adjacencyG")
+          .selectAll("rect")
+          .data(matrix)
+          .enter()
+          .append("rect")
+          .attr("width", 15)
+          .attr("height", 15)
+          .attr("x", function (d) {return d.x * 15})
+          .attr("y", function (d) {return d.y * 15})
+          .style("stroke", "black")
+          .style("stroke-width", "1px")
+          .style("fill", "red")
+          .style("fill-opacity", function (d) {return d.weight * .2})
+          .on("mouseover", gridOver)
+
+      var scaleSize = nodes.length * 15;
+      var nameScale = d3.scale.ordinal().domain(nodes.map(function (el) {return el.id})).rangePoints([0,scaleSize],1);
+
+      xAxis = d3.svg.axis().scale(nameScale).orient("top").tickSize(4);
+      yAxis = d3.svg.axis().scale(nameScale).orient("left").tickSize(4);
+      d3.select("#adjacencyG").append("g").call(xAxis).selectAll("text").style("text-anchor", "end").attr("transform", "translate(-10,-10) rotate(90)");
+      d3.select("#adjacencyG").append("g").call(yAxis);
+
+      function gridOver(d,i) {
+        console.log(d);
+        d3.selectAll("rect").style("stroke-width", function (p) {return p.x == d.x || p.y == d.y ? "3px" : "1px"})
+      }
+
+    }
+  </script>
+</footer>
+
+</html>
