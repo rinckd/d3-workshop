@@ -3,14 +3,13 @@
   <title>D3</title>
   <meta charset="utf-8" />
   <script src="lib/d3/d3.min.js" type="text/JavaScript"></script>
-  <script src="js/colorbrewer.js" type="text/JavaScript"></script>
+  <script src="lib/colorbrewer/colorbrewer.js" type="text/JavaScript"></script>
   <script src="js/queue.js" type="text/JavaScript"></script>
 </head>
 <style>
   svg {
     height: 500px;
-    width: 500px;
-    border: 1px solid gray;
+    width: 800px;
   }
 
 </style>
@@ -23,33 +22,42 @@
 <div id="controls"> </div>
 </body>
 <footer>
-
   <script>
-    queue()
-        .defer(d3.csv, "data/nodelist.csv")
-        .defer(d3.csv, "data/edgelist.csv")
-        .await(function(error, file1, file2) { createAdjacencyMatrix(file1, file2); });
 
-    function createAdjacencyMatrix(nodes,edges) {
-      var edgeHash = {};
-      for (var x in edges) {
-        var id = edges[x].source + "-" + edges[x].target;
-        edgeHash[id] = edges[x];
-      }
+    d3.json("data/hourly_load_profile.json", function (error, json) {
+      if (error) return console.error(error);
       var matrix = [];
-      //create all possible edges
-      for (var a in nodes) {
-        for (var b in nodes) {
-          var grid = {id: nodes[a].id + "-" + nodes[b].id, x: b, y: a, weight: 0};
-          if (edgeHash[grid.id]) {
-            grid.weight = edgeHash[grid.id].weight;
+      var maxValue = 0;
+      for (var i = 0; i < json.Hours.length; i++) {
+        for (var j = 0; j < json.Hours[0].length; j++) {
+          if (json.Hours[i][j] > maxValue) {
+            maxValue = json.Hours[i][j];
           }
-
+          var grid = {id: i + "-" + j, x: i, y: j, weight: json.Hours[i][j]};
           matrix.push(grid);
         }
-      }
-      console.log(matrix);
 
+      }
+
+
+      var colors = ["rgb(0, 0, 0)","rgb(34, 39, 90)",
+        "rgb(51, 45, 135)","rgb(69, 48, 192)", "rgb(46, 44, 213)",
+        "rgb(23, 40, 234)","rgb(0, 35, 255)", "rgb(0, 72, 255)",
+        "rgb(0, 108, 255)", "rgb(0, 146, 255)", "rgb(0, 182, 255)",
+        "rgb(0, 218, 250)", "rgb(0, 245, 245)", "rgb(6, 244, 220)",
+        "rgb(12,232,195)", "rgb(18,221,165)", "rgb(23,210,135)",
+        "rgb(29,198,105)", "rgb(35,187,75)", "rgb(69,182,58)", "rgb(104,186,44)",
+        "rgb(138,200, 25)", "rgb(167,214,19)", "rgb(197,228,13)", "rgb(226,241,6)",
+        "rgb(255,255,0)", "rgb(255,241,0)", "rgb(255,227,0)", "rgb(255,213,0)",
+        "rgb(255,199,0)", "rgb(255,186,0)", "rgb(255,172,0)", "rgb(255,159, 0)",
+        "rgb(255,145,0)", "rgb(255,134,0)", "rgb(255,122,0)", "rgb(255,103,0)",
+        "rgb(255,84,0)"];
+      var colorScale = d3.scale.quantize()
+          .range(colorbrewer.YlOrRd[8])
+          .domain([0, maxValue]);
+//      var colorScale = d3.scale.quantize()
+//          .range(colors)
+//          .domain([0, maxValue]);
       d3.select("svg")
           .append("g")
           .attr("transform", "translate(50,50)")
@@ -58,17 +66,17 @@
           .data(matrix)
           .enter()
           .append("rect")
-          .attr("width", 15)
-          .attr("height", 15)
-          .attr("x", function (d) {return d.x * 15})
-          .attr("y", function (d) {return d.y * 15})
+          .attr("width", 1.5)
+          .attr("height", 7)
+          .attr("x", function (d) {return d.x * 1.5})
+          .attr("y", function (d) {return d.y * 7})
           .style("stroke", "black")
-          .style("stroke-width", "1px")
-          .style("fill", "red")
+          .style('stroke-width', 0)
+          .style("fill", function (d) { return colorScale(d.weight); })
           .style("fill-opacity", function (d) {return d.weight * .2})
           .on("mouseover", gridOver)
 
-      var scaleSize = nodes.length * 15;
+      var scaleSize = 365 * 5;
       var nameScale = d3.scale.ordinal().domain(nodes.map(function (el) {return el.id})).rangePoints([0,scaleSize],1);
 
       xAxis = d3.svg.axis().scale(nameScale).orient("top").tickSize(4);
@@ -78,10 +86,13 @@
 
       function gridOver(d,i) {
         console.log(d);
-        d3.selectAll("rect").style("stroke-width", function (p) {return p.x == d.x || p.y == d.y ? "3px" : "1px"})
+        d3.selectAll("rect").style("stroke-width", function (p) {return p.x == d.x && p.y == d.y ? "1px" : "0px"})
       }
 
-    }
+
+
+    });
+
   </script>
 </footer>
 
