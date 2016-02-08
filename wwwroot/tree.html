@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/site.css" />
   <script src="lib/angular/angular.min.js"></script>
-  
   <script src="app/app-tree.js"></script>
   <script src="app/sliderController.js"></script>  
   <script src="app/treeControls.js"></script>
@@ -18,12 +17,11 @@
   <div id="sidebar">
     <div id="navlinks">
     </div>
-    
-    <label>Depth</label>
-    <input type="range" ng-model="parameters.maxDepth" min="0" max="15"/>
+
+    <br><br><br>
     <label>Opacity</label>
     <input type="range" ng-model="parameters.opacity" min="0" max="100"/>
-    <button ng-click="update()" class="btn btn-primary">Update</button>
+
   </div>
   <div id="wrapper">
     <nav class="navbar navbar-inverse">
@@ -48,8 +46,9 @@
         <div>
             <div class="row">
                 <div class="col-md-12">
-                  <place-tree data="parameters" buttonControl="updateTree"></place-tree>
-                  <!--<div id="treeBackground"></div>-->
+                  <div id="treeBackground">
+                    <place-tree data="parameters" buttonControl="updateTree"></place-tree>
+                  </div>
                 </div>
             </div>
         </div>

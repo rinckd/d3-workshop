@@ -35,54 +35,44 @@
     <div id="main" class="container-fluid">
         <div>
             <div class="row">
-                <div class="col-md-12">
-                  <h3>Intro to d3</h3>
+              <div id="circle" class="col-md-12">
+                <h2>circle</h2>
+                <aside>Click on any of the numbers in the code to change them</aside>
+                <div class="col-md-6">
+                  <div class="editor"></div>
                 </div>
+                <div class="col-md-6">
+                  <svg width="600" height=200>
+                    <circle cx=250 cy=100 r=30 fill="#25B0B0"></circle>
+                  </svg>
+                </div>
+                <script>
+                  (function() {
+                    var options = {
+                      mode: 'text/html',
+                      lineNumbers: true,
+                      viewportMargin: Infinity
+                    };
+                    var editor = d3.select("#circle").select(".editor");
+                    var svg = d3.select("#circle svg");
+                    var sticker = d3.sticker(svg.select("circle").node());
 
-                  <div name="circle" id="circle">
-                    <h2>circle</h2>
-                    <aside>Click on any of the numbers in the code to change them</aside>
-                    <div class="sidebyside">
-                      <div class="left">
-                        <div class="editor"></div>
-                        <p>
-                          The circle's unique attributes are <b>cx</b>, <b>cy</b> for the center coordinates and <b>r</b> for the radius.
-                          Try changing them to see how the numbers map to the visual. Notice that the smaller <b>cy</b> is, the closer it is to the top.
-                        </p>
-                      </div>
-                      <div class="right">
-                        <svg width="400" height=200>
-                          <circle cx=200 cy=100 r=30 fill="#25B0B0"></circle>
-                        </svg>
-                      </div>
-                    </div>
-                    <script>
-                      (function() {
-                        var options = {
-                          mode: 'text/html',
-                          lineNumbers: true,
-                          viewportMargin: Infinity
-                        }
-                        var editor = d3.select("#circle").select(".editor");
-                        var svg = d3.select("#circle svg");
-                        var sticker = d3.sticker(svg.select("circle").node());
-
-                        var cm = CodeMirror(editor.node(), options);
-                        Inlet(cm)
-                        var text = "<circle\n  cx=250\n  cy=100\n  r=30\n  fill='#25B0B0'>\n</circle>";
-                        cm.setValue(text);
-                        cm.on("change", function() {
-                          var value = cm.getValue();
-                          sticker.string(value);
-                          sticker.deserialize();
-                          svg.selectAll("*").remove()
-                          sticker(svg)
-                        })
-                      }())
-                    </script>
-                  </div>
+                    var cm = CodeMirror(editor.node(), options);
+                    Inlet(cm);
+                    var text = "<circle\n  cx=250\n  cy=100\n  r=30\n  fill='#25B0B0'>\n</circle>";
+                    cm.setValue(text);
+                    cm.on("change", function() {
+                      var value = cm.getValue();
+                      sticker.string(value);
+                      sticker.deserialize();
+                      svg.selectAll("*").remove()
+                      sticker(svg)
+                    })
+                  }())
+                </script>
+                </div>
                   <!--<div id="treeBackground"></div>-->
-                </div>
+              </div>
             </div>
         </div>
     </div>

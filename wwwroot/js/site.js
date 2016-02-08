@@ -17,8 +17,8 @@
   });
 
 
-  var links = [ {"url":"tree.html", "title":"Trees" },
-    {"url":"surface2.html", "title":"ipsum"} ];
+  var links = [ {"url":"index.html", "title":"Intro to SVG"} , {"url":"tree.html", "title":"Trees" },
+    {"url":"surface4.html", "title":"Heat Maps"} ];
 
   getPosts(links);
 
