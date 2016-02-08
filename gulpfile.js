@@ -1,39 +1,9 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
-var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
 var jsFiles = ['*.js', 'wwwroot/js/*.js'];
 var nodeMon = require('gulp-nodemon');
 
-gulp.task('style', function() {
-  return gulp.src(jsFiles)
-      .pipe(jshint())
-      .pipe(jshint.reporter('jshint-stylish', {
-        verbose:true
-      }))
-      .pipe(jscs())
-      .pipe(jscs.reporter());
-});
-
-// gulp.task('csv', ['style'], function() {
-//   var options = {
-//     script: 'server/csv.js',
-//     delayTime: 1,
-//     env: {
-//       'PORT': 8080
-//     },
-//     tasks: ['style'],
-//   };
-//   gulp.task('server', function (cb) {
-//   exec('node server/csv.js', function (err, stdout, stderr) {
-//     console.log(stdout);
-//     console.log(stderr);
-//     cb(err);
-//   });
-// })
-// });
-
-gulp.task('serve', ['style'], function() {
+gulp.task('serve', [], function() {
   startBrowserSync();
   var options = {
     script: 'server/app.js',
@@ -41,7 +11,6 @@ gulp.task('serve', ['style'], function() {
     env: {
       'PORT': 8080
     },
-    tasks: ['style'],
     watch: jsFiles
   };
   return nodeMon(options)

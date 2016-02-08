@@ -1,6 +1,6 @@
 # Getting Started
 
-1. Use `npm i` to install the necessary dependencies.
+1. Use `npm install` and `bower install` to install the necessary dependencies.
 2. `gulp serve` will start server/app.js and browser-sync. This will launch a browser starting with an introduction to svg elements.
 
 Table of Contents:

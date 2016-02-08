@@ -7,21 +7,15 @@
   <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/site.css" />
-  <script src="lib/angular/angular.min.js"></script>
   <script src="app/app-tree.js"></script>
   <script src="app/sliderController.js"></script>  
   <script src="app/treeControls.js"></script>
   </head>
 
-<body  ng-controller="sliderController">
+<body>
   <div id="sidebar">
     <div id="navlinks">
     </div>
-
-    <br><br><br>
-    <label>Opacity</label>
-    <input type="range" ng-model="parameters.opacity" min="0" max="100"/>
-
   </div>
   <div id="wrapper">
     <nav class="navbar navbar-inverse">
@@ -42,12 +36,11 @@
       </div>
 
     </nav>
-    <div id="main" class="container-fluid">
+    <div id="main" class="container-fluid pull-left">
         <div>
             <div class="row">
                 <div class="col-md-12">
                   <div id="treeBackground">
-                    <place-tree data="parameters" buttonControl="updateTree"></place-tree>
                   </div>
                 </div>
             </div>

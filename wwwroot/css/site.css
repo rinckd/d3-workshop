@@ -2,6 +2,7 @@ body {
   background: #2a2c36;
 }
 #treeBackground {
+  margin-top: 20px;
   background-color: #213627;
 }
 .menu {
@@ -98,7 +99,7 @@ body {
   border-radius: 25px;
   background: #fff;
   height: 600px;
-
+  width: 1000px;
 }
 
 .btn:focus, .btn:active:focus, .btn.active:focus {

@@ -17,8 +17,8 @@
   });
 
 
-  var links = [ {"url":"index.html", "title":"Intro to SVG"} , {"url":"tree.html", "title":"Trees" },
-    {"url":"surface4.html", "title":"Heat Maps"} ];
+  var links = [ {'url':'index.html', 'title':'Intro to SVG'} , {'url':'tree.html', 'title':'Trees' },
+    {'url':'surface4.html', 'title':'Heat Maps'} ];
 
   getPosts(links);
 
@@ -30,7 +30,6 @@
     $output.append('</div>');
     $('#navlinks').empty().append($output);
   }
-
 
 
 })();

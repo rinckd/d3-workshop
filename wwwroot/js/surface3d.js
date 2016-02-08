@@ -44,19 +44,19 @@
         }
       }
       d0.sort(function (a, b) {
-        return b.depth - a.depth
+        return b.depth - a.depth;
       });
       var dr = node.selectAll('path').data(d0);
-      dr.enter().append("path");
+      dr.enter().append('path');
       if (trans) {
         dr = dr.transition().delay(trans.delay()).duration(trans.duration());
       }
-      dr.attr("d", function (d) {
+      dr.attr('d', function (d) {
         return d.path;
       });
       if (colorFunction) {
-        dr.attr("fill", function (d) {
-          return colorFunction(d.data)
+        dr.attr('fill', function (d) {
+          return colorFunction(d.data);
         });
       }
       trans = false;
@@ -76,20 +76,26 @@
       transformPrecalc[6] = -sinB * cosA;
       transformPrecalc[7] = sinA;
       transformPrecalc[8] = cosA * cosB;
-      if (timer) clearTimeout(timer);
+      if (timer) {
+        clearTimeout(timer);
+      }
       timer = setTimeout(renderSurface);
       return this;
     };
     this.setTurtable(0.5, 0.5);
     this.surfaceColor = function (callback) {
       colorFunction = callback;
-      if (timer) clearTimeout(timer);
+      if (timer) {
+        clearTimeout(timer);
+      }
       timer = setTimeout(renderSurface);
       return this;
     };
     this.surfaceHeight = function (callback) {
       heightFunction = callback;
-      if (timer) clearTimeout(timer);
+      if (timer) {
+        clearTimeout(timer);
+      }
       timer = setTimeout(renderSurface);
       return this;
     };

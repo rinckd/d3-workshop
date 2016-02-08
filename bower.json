@@ -14,12 +14,10 @@
   ],
   "dependencies": {
     "d3": "^3.5.14",
-    "bootswatch": "^3.3.6+1",
-    "angular": "~1.4.9",
-    "underscore": "^1.8.3",
-    "lodash": "^4.2.1",
-    "three.js": "threejs#*",
+    "bootswatch": "^3.3.6",
     "codemirror": "^5.11.0",
-    "vis-editor": "^0.3.0"
+    "vis-editor": "^0.3.0",
+    "font-awesome": "^4.5.0",
+    "Inlet": "http://github.com/enjalot/Inlet.git#^0.1.8"
   }
 }
