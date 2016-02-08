@@ -15,7 +15,7 @@
   <script src="js/inlet.min.js"></script>
 </head>
 
-<body  ng-controller="sliderController">
+<body>
   <div id="sidebar">
     <div id="navlinks">
     </div>
@@ -35,7 +35,7 @@
     <div id="main" class="container-fluid pull-left">
         <div>
             <div class="row">
-              <div id="circle" class="col-md-12">
+              <div id="path" class="col-md-12">
                 <h2>circle</h2>
                 <aside>Click on any of the numbers in the code to change them</aside>
                 <div class="col-md-6">
@@ -43,7 +43,15 @@
                 </div>
                 <div class="col-md-6">
                   <svg width="800" height=200>
-                    <circle cx=250 cy=100 r=30 fill="#25B0B0"></circle>
+                    <path d="
+            M50,100
+            L131,66
+            L259,115
+            L339,50
+            L400,98
+            M350,150"
+                          fill=none
+                          stroke=#25B0B0></path>
                   </svg>
                 </div>
                 <script>
@@ -53,13 +61,12 @@
                       lineNumbers: true,
                       viewportMargin: Infinity
                     };
-                    var editor = d3.select("#circle").select(".editor");
-                    var svg = d3.select("#circle svg");
-                    var sticker = d3.sticker(svg.select("circle").node());
-
+                    var editor = d3.select("#path").select(".editor");
+                    var svg = d3.select("#path svg");
+                    var sticker = d3.sticker(svg.select("path").node());
                     var cm = CodeMirror(editor.node(), options);
                     Inlet(cm);
-                    var text = "<circle\n  cx=250\n  cy=100\n  r=30\n  fill='#25B0B0'>\n</circle>";
+                    var text = "<path d='\n  M50,100\n  L131,66\n  L259,115\n  L339,50\n  L400,98\n  M350,150\n  L100,150'\n  fill=none\n  stroke='#25B0B0'></path>"
                     cm.setValue(text);
                     cm.on("change", function() {
                       var value = cm.getValue();
