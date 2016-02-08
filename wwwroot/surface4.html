@@ -19,6 +19,17 @@
   <svg>
   </svg>
 </div>
+
+<p>Additional References: </p>
+Start here -> <a href="https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/">https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/</a>
+<a href="https://eagereyes.org/basics/rainbow-color-map">https://eagereyes.org/basics/rainbow-color-map</a>
+<a href="http://tools.medialab.sciences-po.fr/iwanthue/">http://tools.medialab.sciences-po.fr/iwanthue/</a>
+<a href="http://colorbrewer2.org/">http://colorbrewer2.org/</a>
+<a href="https://github.com/Siddharth11/gradStop.js">https://github.com/Siddharth11/gradStop.js</a>
+<a href="http://tristen.ca/hcl-picker/#/hlc/30/0/332E27/F9E5C9">http://tristen.ca/hcl-picker/#/hlc/30/0/332E27/F9E5C9</a>
+<a href="https://vis4.net/blog/posts/mastering-multi-hued-color-scales/">https://vis4.net/blog/posts/mastering-multi-hued-color-scales/</a>
+<a href="https://gka.github.io/palettes/#colors=feeb65,e4521b,fd342f|steps=64|bez=1|coL=1">https://gka.github.io/palettes/#colors=feeb65,e4521b,fd342f|steps=64|bez=1|coL=1</a>
+<a href="https://medium.com/graphiq-engineering/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283#.rttsx8n27">https://medium.com/graphiq-engineering/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283#.rttsx8n27</a>
 <div id="controls"> </div>
 </body>
 <footer>
@@ -52,12 +63,12 @@
         "rgb(255,199,0)", "rgb(255,186,0)", "rgb(255,172,0)", "rgb(255,159, 0)",
         "rgb(255,145,0)", "rgb(255,134,0)", "rgb(255,122,0)", "rgb(255,103,0)",
         "rgb(255,84,0)"];
-      var colorScale = d3.scale.quantize()
-          .range(colorbrewer.YlOrRd[8])
-          .domain([0, maxValue]);
 //      var colorScale = d3.scale.quantize()
-//          .range(colors)
+//          .range(colorbrewer.YlOrRd[8])
 //          .domain([0, maxValue]);
+      var colorScale = d3.scale.quantize()
+          .range(colors)
+          .domain([0, maxValue]);
       d3.select("svg")
           .append("g")
           .attr("transform", "translate(50,50)")
@@ -76,13 +87,20 @@
           .style("fill-opacity", function (d) {return d.weight * .2})
           .on("mouseover", gridOver)
 
-      var scaleSize = 365 * 5;
-      var nameScale = d3.scale.ordinal().domain(nodes.map(function (el) {return el.id})).rangePoints([0,scaleSize],1);
-
-      xAxis = d3.svg.axis().scale(nameScale).orient("top").tickSize(4);
-      yAxis = d3.svg.axis().scale(nameScale).orient("left").tickSize(4);
-      d3.select("#adjacencyG").append("g").call(xAxis).selectAll("text").style("text-anchor", "end").attr("transform", "translate(-10,-10) rotate(90)");
-      d3.select("#adjacencyG").append("g").call(yAxis);
+//      var scaleSize = 365 * 5;
+//      var nameScale = d3.scale.ordinal().domain(matrix.map(function (el) {return el.id})).rangePoints([0,scaleSize],1);
+//
+//      xAxis = d3.svg.axis().scale(nameScale).orient("top").tickSize(4);
+//      yAxis = d3.svg.axis().scale(nameScale).orient("left").tickSize(4);
+//      d3.select("#adjacencyG")
+//          .append("g")
+//          .call(xAxis)
+//          .selectAll("text")
+//          .style("text-anchor", "end")
+//          .attr("transform", "translate(-10,-10) rotate(90)");
+//      d3.select("#adjacencyG")
+//          .append("g")
+//          .call(yAxis);
 
       function gridOver(d,i) {
         console.log(d);

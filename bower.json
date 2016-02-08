@@ -16,9 +16,10 @@
     "d3": "^3.5.14",
     "bootswatch": "^3.3.6+1",
     "angular": "~1.4.9",
-    "x3dom": "~1.7.1",
     "underscore": "^1.8.3",
     "lodash": "^4.2.1",
-    "three.js": "threejs#*"
+    "three.js": "threejs#*",
+    "codemirror": "^5.11.0",
+    "vis-editor": "^0.3.0"
   }
 }

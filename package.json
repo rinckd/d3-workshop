@@ -5,7 +5,6 @@
   "main": "server/app.js",
   "dependencies": {
     "JSONStream": "~1.0.7",
-    "colorbrewer": "^1.0.0",
     "csv-streamify": "~3.0.3",
     "express": "^4.13.4",
     "fs": "0.0.2",

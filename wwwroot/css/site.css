@@ -1,6 +1,5 @@
-
-#treeBackground {
-  background-color: #213627;
+body {
+  background: #2a2c36;
 }
 .menu {
   font-size: 12px;
@@ -41,17 +40,15 @@
   transition: left ease .25s;
 }
 
-#test {
-    background: #ffffff;
-}
 #sidebarToggle {
   color: #ffffff;
-  font-size: 25px; 
+  font-size: 25px;
   background: #2a2c36;
   margin: 0 0 0 10px;
 }
 
 #wrapper {
+
   background: #2a2c36;
   margin: 0 0 0 150px;
   -moz-transition: margin-left ease .25s;
@@ -72,8 +69,38 @@
   transition: margin-left ease .25s;
 }
 
+#navlinks {
 
-#map {
+  margin-top: 70px;
+  margin-left: 8px;
+}
+
+.navlink  {
+  font-size: 15px;
+  line-height: 25px;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #222;
+}
+
+.navlink:hover {
+  background: #fff;
   width: 100%;
+  text-decoration: none;
+}
+
+#main {
+  margin-top: 30px;
+  margin-right: 10px;
+  border-radius: 25px;
+  background: #fff;
   height: 600px;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: 0 none;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+  background: #fefeff;
+  box-shadow: none;
 }

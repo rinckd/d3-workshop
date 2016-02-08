@@ -15,4 +15,22 @@
       $icon.removeClass('fa-angle-right');
     }
   });
+
+
+  var links = [ {"url":"tree.html", "title":"Trees" },
+    {"url":"surface2.html", "title":"ipsum"} ];
+
+  getPosts(links);
+
+  function getPosts(data) {
+    var $output = $('<div>');
+    $.each(data,function(i, val) {
+      $output.append('<a class="navlink" href=' + val.url +'>' + val.title + '</a><br>');
+    });
+    $output.append('</div>');
+    $('#navlinks').empty().append($output);
+  }
+
+
+
 })();
