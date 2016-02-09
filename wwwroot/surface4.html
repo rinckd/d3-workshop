@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <script src="lib/d3/d3.min.js" type="text/JavaScript"></script>
   <script src="lib/colorbrewer/colorbrewer.js" type="text/JavaScript"></script>
-  <script src="js/queue.js" type="text/JavaScript"></script>
 </head>
 <style>
   svg {
@@ -34,7 +33,6 @@ Start here -> <a href="https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/
 </body>
 <footer>
   <script>
-
     d3.json("data/hourly_load_profile.json", function (error, json) {
       if (error) return console.error(error);
       var matrix = [];
