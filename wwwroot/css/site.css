@@ -21,6 +21,11 @@ body {
   color: #eee;
 }
 
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:0.8;}
+  
 #sidebar {
   background: #2a2c36;
   color: #eee;
