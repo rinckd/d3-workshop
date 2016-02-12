@@ -2,99 +2,131 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <title>D3</title>
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Ubuntu' rel='stylesheet' type='text/css'>
   <style>
-    body {
-      font-family: sans-serif;
-      padding: 10px;
+    .axis path {
+      fill: none;
+      stroke: #777;
+      shape-rendering: crispEdges;
+    }
+    .axis text {
+      font-family: Lato, serif;
+      font-size: 13px;
     }
 
-    svg path {
-      stroke: #000;
-      stroke-width: 1px;
-      stroke: rgba(0, 0, 0, 0.2);
-    }
 
-    svg {
-      border: 1px solid #DED8BF;
-      background-color: #f4f4d9;
-    }
-
-    h1 {
-      font-weight: normal;
-      margin: 0;
-      padding-left: 5px;
-      color: #53483e;
-    }
-
-    p {
-      margin: 0 0 10px;
-      padding-left: 5px;
-      color: #917e6b;
-    }
-
-    ul {
-      width: 200px;
-      float: left;
-      list-style-type: none;
-      margin: 0;
-      padding: 0 10px 0 0;
-    }
-
-    li {
-      cursor: pointer;
-      background-color: #c8ad93;
-      padding: 10px;
-      margin: 2px;
-      color: #fff;
-    }
   </style>
 </head>
 <body>
-<h1>D3.js Surface Plots</h1>
-<p>Drag graph to change view</p>
+<div id="sidebar">
+  <div id="navlinks">
+  </div>
+</div>
+<div id="wrapper">
+  <nav class="navbar navbar-inverse">
+    <div id='test' class="container-fluid">
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <button id="sidebarToggle" class="btn btn-primary">
+            <i class="fa fa-angle-left"></i>
+          </button>
+        </li>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+  <div id="main" class="container-fluid pull-left">
+    <div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="timeSeries">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer" class="container-fluid">
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="lib/d3/d3.min.js"></script>
 <script src="js/surface3d.js"></script>
 <script>
-  var yaw = 0.5;
-  var pitch = 0.5;
-  var width = 1100;
+  var width = 800;
   var height = 400;
-  var drag = false;
+  var margins = {
+    top: 40,
+    right: 20,
+    bottom: 40,
+    left: 50
+  };
+  var numberOfHours = 24;
+
 
   var data_json;
   d3.json("data/hourly_load_profile.json", function (error, json) {
-    if (error) return console.warn(error);
+    if (error) return console.error(error);
+
     data_json = json;
-    var svg = d3.select('body')
+
+    var svg = d3.select('#timeSeries')
         .append('svg')
         .attr('height', height)
         .attr('width', width);
 
-    var group = svg.append("g");
-    var md = group.data([data_json.Hours])
-        .surface3D(width, height)
-        .surfaceHeight(function (d) {
-          return d;
+    var xScale = d3.scale.linear()
+        .range([margins.left, width - margins.right])
+        .domain([0,23]);
+
+    var yScale = d3.scale.linear()
+        .range([height - margins.bottom, margins.top])
+        .domain([0,250]);
+    var xAxis = d3.svg.axis()
+        .scale(xScale);
+
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient('left');
+
+    var lineGenerator = d3.svg.line()
+        .x(function(d, iterator) {
+          return xScale(iterator);
         })
-        .surfaceColor(function (d) {
-          var c = d3.hsl((d + 100), 0.6, 0.5).rgb();
-          return "rgb(" + parseInt(c.r) + "," + parseInt(c.g) + "," + parseInt(c.b) + ")";
-        });
-    svg.on("mousedown", function () {
-      drag = [d3.mouse(this), yaw, pitch];
-    }).on("mouseup", function () {
-      drag = false;
-    }).on("mousemove", function () {
-      if (drag) {
-        var mouse = d3.mouse(this);
-        yaw = drag[1] - (mouse[0] - drag[0][0]) / 50;
-        pitch = drag[2] + (mouse[1] - drag[0][1]) / 50;
-        pitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, pitch));
-        md.turntable(yaw, pitch);
-      }
-    });
+        .y(function(d) {
+          return yScale(d.value);
+        })
+        .interpolate("basis");
+
+    svg.append('path')
+        .attr('d', lineGenerator(data_json.data))
+        .attr('stroke', 'green')
+        .attr('stroke-width', 2)
+        .attr('fill', 'none');
+    svg.append("g")
+        .call(xAxis)
+        .attr('class', 'axis')
+        .attr('transform', 'translate(0, ' + (height - margins.bottom) + ')');
+
+    svg.append("g")
+        .call(yAxis)
+        .attr('transform', 'translate(' + (margins.left) + ',0)')
+        .attr('class', 'axis');
+
+
+
   });
 
 </script>
+<script type="text/javascript" src="js/site.js"></script>
+
 </body>
 </html>

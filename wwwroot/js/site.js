@@ -15,9 +15,14 @@
       $icon.removeClass('fa-angle-right');
     }
   });
-
+  function unloadScrollBars() {
+    document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+    document.body.scroll = "no"; // ie only
+  }
+  unloadScrollBars();
 
   var links = [ {'url':'index.html', 'title':'Intro to SVG'} , {'url':'tree.html', 'title':'Trees' },
+    {'url':'surface.html', title: 'Time Series'},
     {'url':'surface4.html', 'title':'Heat Maps'} ];
 
   getPosts(links);

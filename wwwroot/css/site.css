@@ -1,6 +1,10 @@
 body {
   background: #2a2c36;
 }
+#timeSeries {
+  margin-top: 20px;
+
+}
 #treeBackground {
   margin-top: 20px;
   background-color: #213627;
