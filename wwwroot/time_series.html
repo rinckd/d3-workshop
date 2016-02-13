@@ -79,7 +79,7 @@
       height = 500 - margin.top - margin.bottom,
       height2 = 500 - margin2.top - margin2.bottom;
 
-  var parseDate = d3.time.format("%b %Y").parse;
+  //var parseDate = d3.time.format("%b %Y").parse;
 
   var x = d3.time.scale().range([0, width]),
       x2 = d3.time.scale().range([0, width]),
@@ -170,6 +170,8 @@
   }
 
   function type(d) {
+    var format = d3.time.format('%M-%d-%H');
+
     console.log(d);
     d.date = parseDate(d.data[0].date);
     d.price = +d.data[0].value;
