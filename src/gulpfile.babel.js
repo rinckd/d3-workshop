@@ -1,9 +1,16 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var jsFiles = ['*.js', 'wwwroot/js/*.js'];
-var nodeMon = require('gulp-nodemon');
+const gulp = require('gulp');
+const jscs = require('gulp-jscs');
+const browserSync = require('browser-sync');
+const jsFiles = ['*.js', 'wwwroot/js/*.js'];
+const nodeMon = require('gulp-nodemon');
 
-gulp.task('serve', [], function() {
+gulp.task('lint', () => {
+  return gulp.src('src/app.js')
+    .pipe(jscs())
+    .pipe(jscs.reporter());
+});
+
+gulp.task('serve', [], () => {
   startBrowserSync();
   var options = {
     script: 'server/app.js',
