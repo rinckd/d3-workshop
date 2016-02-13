@@ -1,16 +1,19 @@
 const gulp = require('gulp');
 const jscs = require('gulp-jscs');
+const jshint = require('gulp-jshint');
 const browserSync = require('browser-sync');
 const jsFiles = ['*.js', 'wwwroot/js/*.js'];
 const nodeMon = require('gulp-nodemon');
 
 gulp.task('lint', () => {
-  return gulp.src('src/app.js')
+  return gulp.src(jsFiles)
     .pipe(jscs())
-    .pipe(jscs.reporter());
+    .pipe(jscs.reporter())
+    .pipe(jshint())
+    .pipe(jshint.reporter());
 });
 
-gulp.task('serve', [], () => {
+gulp.task('serve', ['lint'], () => {
   startBrowserSync();
   var options = {
     script: 'server/app.js',
@@ -40,7 +43,7 @@ function startBrowserSync() {
       forms: true,
       scroll: true
     },
-    browser: "google chrome",
+    browser: 'google chrome',
     injectChanges: true,
     logFileChanges: true,
     logLevel: 'debug',

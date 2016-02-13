@@ -17,24 +17,22 @@
   });
   function unloadScrollBars() {
     document.documentElement.style.overflow = 'hidden';  // firefox, chrome
-    document.body.scroll = "no"; // ie only
+    document.body.scroll = 'no'; // ie only
   }
   unloadScrollBars();
 
-  var links = [ {'url':'index.html', 'title':'Intro to SVG'} , {'url':'tree.html', 'title':'Trees' },
+  var links = [{'url':'index.html', 'title':'Intro to SVG'} , {'url':'tree.html', 'title':'Trees'},
     {'url':'surface.html', title: 'Time Series'},
-    {'url':'surface4.html', 'title':'Heat Maps'} ];
+    {'url':'surface4.html', 'title':'Heat Maps'}];
 
   getPosts(links);
 
   function getPosts(data) {
     var $output = $('<div>');
     $.each(data,function(i, val) {
-      $output.append('<a class="navlink" href=' + val.url +'>' + val.title + '</a><br>');
+      $output.append('<a class="navlink" href=' + val.url + '>' + val.title + '</a><br>');
     });
     $output.append('</div>');
     $('#navlinks').empty().append($output);
   }
-
-
 })();

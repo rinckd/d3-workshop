@@ -108,14 +108,20 @@
       return transition;
     };
     this.setHeight = function (height) {
-      if (height) displayHeight = height;
+      if (height) {
+        displayHeight = height;
+      }
     };
     this.setWidth = function (width) {
-      if (width) displayWidth = width;
+      if (width) {
+        displayWidth = width;
+      }
     };
   };
   d3.selection.prototype.surface3D = function (width, height) {
-    if (!this.node().__surface__) this.node().__surface__ = new Surface(this);
+    if (!this.node().__surface__) {
+      this.node().__surface__ = new Surface(this);
+    }
     var surface = this.node().__surface__;
     this.turntable = surface.setTurtable;
     this.surfaceColor = surface.surfaceColor;
