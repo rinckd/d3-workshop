@@ -18,7 +18,22 @@
     "codemirror": "^5.11.0",
     "vis-editor": "^0.3.0",
     "font-awesome": "^4.5.0",
-    "Inlet": "http://github.com/enjalot/Inlet.git#^0.1.8",
     "colorbrewer": "^1.0.0"
+  },
+  "overrides": {
+    "bootstrap" : {
+      "main" : [
+        "dist/js/bootstrap.min.js",
+        "dist/css/bootstrap.min.css",
+        "less/boostrap.less"
+      ]
+    },
+    "font-awesome": {
+      "main" : [
+          "less/font-awesome.less",
+          "css/font-awesome.min.css",
+          "scss/font-awesome.scss"
+        ]
+    }
   }
 }

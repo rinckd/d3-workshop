@@ -3,10 +3,25 @@
 <head>
   <meta charset="utf-8">
   <title>D3</title>
-  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="css/site.css" />
   <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Ubuntu' rel='stylesheet' type='text/css'>
+  <!--bower:css -->
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css" />
+  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+  <!--endbower -->
+  <!-- bower:js -->
+  <script src="lib/d3/d3.js"></script>
+  <script src="lib/jquery/dist/jquery.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="lib/codemirror/lib/codemirror.js"></script>
+  <script src="lib/colorbrewer/colorbrewer.js"></script>
+  <!-- endbower -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/inlet.css">
+  <link rel="stylesheet" href="css/site.css">
+  <!-- endinject -->
+
+
   <style>
     svg {
       font: 10px sans-serif;
@@ -67,9 +82,6 @@
   </div>
 </div>
 
-<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="lib/d3/d3.min.js"></script>
 <script>
 
 
@@ -178,7 +190,10 @@
     return d;
   }
 </script>
-<script type="text/javascript" src="js/site.js"></script>
-
+<!-- inject:js -->
+<script src="js/site.js"></script>
+<script src="js/surface3d.js"></script>
+<script src="js/tree.js"></script>
+<!-- endinject -->
 </body>
 </html>

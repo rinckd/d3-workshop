@@ -13,9 +13,30 @@ gulp.task('lint', () => {
     .pipe(jshint.reporter());
 });
 
+gulp.task('inject', () => {
+  let wiredep = require('wiredep').stream;
+  let inject = require('gulp-inject');
+  let injectSrc = gulp.src(['./wwwroot/css/*.css',
+                            './wwwroot/js/*.js'], {read: false});
+  let injectOptions = {
+    addRootSlash: false,
+    ignorePath: 'wwwroot'
+  };
+
+
+  let options = {
+    bowerJson: require('./bower.json'),
+    directory: './wwwroot/lib'
+  };
+  return gulp.src('./wwwroot/*.html')
+    .pipe(wiredep(options))
+    .pipe(inject(injectSrc, injectOptions))
+    .pipe(gulp.dest('./wwwroot'));
+});
+
 gulp.task('serve', ['lint'], () => {
   startBrowserSync();
-  var options = {
+  let options = {
     script: 'server/app.js',
     delayTime: 1,
     env: {
@@ -33,7 +54,7 @@ function startBrowserSync() {
   if (browserSync.active) {
     return;
   }
-  var options = {
+  let options = {
     port: 3000,
     proxy: 'localhost:8080',
     files: ['**/*.*'],

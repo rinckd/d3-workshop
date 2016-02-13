@@ -17,8 +17,9 @@
   });
   function unloadScrollBars() {
     document.documentElement.style.overflow = 'hidden';  // firefox, chrome
-    document.body.scroll = 'no'; // ie only
+    //document.body.scroll = 'no'; // ie only
   }
+
   unloadScrollBars();
 
   var links = [{'url':'index.html', 'title':'Intro to SVG'} , {'url':'tree.html', 'title':'Trees'},

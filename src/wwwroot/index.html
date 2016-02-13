@@ -1,18 +1,29 @@
 <!DOCTYPE html>
-
 <head>
   <title>D3</title>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
-  <link rel="stylesheet" href="css/site.css" />
   <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Ubuntu' rel='stylesheet' type='text/css'>
+  <!--bower:css -->
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css" />
+  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+  <!--endbower -->
+  <!-- inject:css -->
   <link rel="stylesheet" href="css/inlet.css">
-  <script type="text/javascript" src="lib/codemirror/lib/codemirror.js"></script>
-  <script type="text/javascript" src="lib/d3/d3.min.js"></script>
-  <script src="js/sticker.js"></script>
-  <script src="js/inlet.min.js"></script>
+  <link rel="stylesheet" href="css/site.css">
+  <!-- endinject -->
+
+  <!-- bower:js -->
+  <script src="lib/d3/d3.js"></script>
+  <script src="lib/jquery/dist/jquery.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="lib/codemirror/lib/codemirror.js"></script>
+  <script src="lib/colorbrewer/colorbrewer.js"></script>
+  <!-- endbower -->
+
+
+  <script src="lib/sticker.js"></script>
+  <script src="lib/inlet.min.js"></script>
 </head>
 
 <body>
@@ -44,12 +55,12 @@
                 <div class="col-md-6">
                   <svg width="800" height=200>
                     <path d="
-            M50,100
-            L131,66
-            L259,115
-            L339,50
-            L400,98
-            M350,150"
+                            M50,100
+                            L131,66
+                            L259,115
+                            L339,50
+                            L400,98
+                            M350,150"
                           fill=none
                           stroke=#25B0B0></path>
                   </svg>
@@ -88,9 +99,12 @@
       </div>
     </div>
   </div>
-
-  <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-
-  <script type="text/javascript" src="js/site.js"></script>
+  <!-- inject:js -->
+  <script src="js/site.js"></script>
+  <script src="js/surface3d.js"></script>
+  <script src="js/tree.js"></script>
+  <!-- endinject -->
+  <!--<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>-->
+  <!--<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>-->
+  <!--<script type="text/javascript" src="js/site.js"></script>-->
 </body>
