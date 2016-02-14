@@ -53,7 +53,19 @@
       .attr('width', 600)
       .attr('height', 500);
 
-    svg.selectAll('line')
+    //var path = svg.selectAll('line')
+    //  .data(branches)
+    //  .enter()
+    //  .append('line')
+    //  .style('stroke', '#ffffff')
+    //  .attr('x1', function (d) { return d.x1; })
+    //  .attr('y1', function (d) { return d.y1; })
+    //  .attr('x2', function (d) { return d.x2; })
+    //  .attr('y2', function (d) { return d.y2; })
+    //  .style('stroke-opacity', function (d) { return (maxDepth + opacity - d.depth) * 0.1; })
+    //  .style('stroke-width', function (d) { return ((maxDepth + 1 - d.depth) * 0.4) + 'px'; });
+    var path = svg.selectAll('line');
+    var more = path
       .data(branches)
       .enter()
       .append('line')
@@ -64,6 +76,17 @@
       .attr('y2', function (d) { return d.y2; })
       .style('stroke-opacity', function (d) { return (maxDepth + opacity - d.depth) * 0.1; })
       .style('stroke-width', function (d) { return ((maxDepth + 1 - d.depth) * 0.4) + 'px'; });
+    more.each(function(d) { d.totalLength = this.getTotalLength(); })
+      .attr("stroke-dasharray", function(d) { return d.totalLength + " " + d.totalLength; })
+      .attr("stroke-dashoffset", function(d) { return d.totalLength; })
+      .transition().duration(3000).ease('linear')
+      .attr('stroke-dashoffset', 0);
+
+    //var totalLength = path.node().length();
+    //path.attr('stoke-dasharray', totalLength + " " + totalLength)
+    //  .attr('stroke-dashoffset', totalLength)
+    //  .transition().duration(3000).ease('linear')
+    //  .attr('stroke-dashoffset', 0);
   }
 
   branchTree(trunk);

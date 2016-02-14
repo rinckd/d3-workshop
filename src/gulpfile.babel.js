@@ -23,12 +23,11 @@ gulp.task('inject', () => {
     ignorePath: 'wwwroot'
   };
 
-
   let options = {
     bowerJson: require('./bower.json'),
     directory: './wwwroot/lib'
   };
-  return gulp.src('./wwwroot/*.html')
+  return gulp.src(['./wwwroot/*.html', './views/partials/*.ejs', './views/*.ejs'])
     .pipe(wiredep(options))
     .pipe(inject(injectSrc, injectOptions))
     .pipe(gulp.dest('./wwwroot'));

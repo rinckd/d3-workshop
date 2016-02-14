@@ -22,11 +22,11 @@
 
   unloadScrollBars();
 
-  var links = [{'url':'index.html', 'title':'Intro to SVG'} , {'url':'tree.html', 'title':'Trees'},
-    {'url':'surface.html', title: 'Time Series'},
-    {'url':'surface4.html', 'title':'Heat Maps'}];
-
-  getPosts(links);
+  //var links = [{'url':'index.html', 'title':'Intro to SVG'} , {'url':'tree.html', 'title':'Trees'},
+  //  {'url':'surface.html', title: 'Time Series'},
+  //  {'url':'surface4.html', 'title':'Heat Maps'}];
+  //
+  //getPosts(links);
 
   function getPosts(data) {
     var $output = $('<div>');
