@@ -18,22 +18,23 @@
     "codemirror": "^5.11.0",
     "vis-editor": "^0.3.0",
     "font-awesome": "^4.5.0",
-    "colorbrewer": "^1.0.0"
+    "colorbrewer": "^1.0.0",
+    "dimple": "^2.1.6"
   },
   "overrides": {
-    "bootstrap" : {
-      "main" : [
+    "bootstrap": {
+      "main": [
         "dist/js/bootstrap.min.js",
         "dist/css/bootstrap.min.css",
         "less/boostrap.less"
       ]
     },
     "font-awesome": {
-      "main" : [
-          "less/font-awesome.less",
-          "css/font-awesome.min.css",
-          "scss/font-awesome.scss"
-        ]
+      "main": [
+        "less/font-awesome.less",
+        "css/font-awesome.min.css",
+        "scss/font-awesome.scss"
+      ]
     }
   }
 }

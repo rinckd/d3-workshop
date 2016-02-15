@@ -3,7 +3,7 @@
   var height = 400;
   var margins = {
     top: 40,
-    right: 20,
+    right: 0,
     bottom: 40,
     left: 50
   };

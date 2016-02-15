@@ -3,7 +3,7 @@
   var height = 400;
   var margins = {
     top: 40,
-    right: 20,
+    right: 0,
     bottom: 40,
     left: 50
   };
@@ -16,9 +16,6 @@
       .attr('height', height)
       .attr('width', width);
 
-
-    //var mindate = new Date(2012,0,1),
-    //  maxdate = new Date(2012,0,31);
     var format = d3.time.format("%m-%d-%H");
     var minDate = format.parse("01-01-00"); // returns a Date
     var maxDate = format.parse("01-02-02");
@@ -30,13 +27,11 @@
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
       .domain([0, 250]);
-    //var xAxis = d3.svg.axis()
-    //  .scale(xScale);
 
     var xAxis = d3.svg.axis()
       .scale(xScale)
       .orient("bottom")
-      .tickFormat(d3.time.format("%H"));
+      .tickFormat(d3.time.format("%_I%p"));
 
     var yAxis = d3.svg.axis()
       .scale(yScale)
