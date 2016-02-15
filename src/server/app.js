@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var port = 8080;
 var d3Router = express.Router();
-var timeSeriesRouter = express.Router();
+//var timeSeriesRouter = express.Router();
 
 app.use(express.static('wwwroot'));
 app.set('views', './views');
@@ -16,25 +16,31 @@ var navigation = [{
   url:'/trees',
   text:'Trees'
 }, {
-  url:'/timeseries',
+  url:'/timeseries/0',
   text:'Time Series'
 }];
-
-app.get('/:id', function(req,res) {
-  console.log(req.params.id);
+var scripts = [
+  '/js/timeSeries0.js',
+  '/js/timeSeries1.js'
+];
+app.get('/timeseries', function(req, res){
+  req.params.step = 0;
+  timeSeries(req, res);
+});
+app.get('/timeseries/:step', function(req, res) {
+  timeSeries(req, res);
 });
 
-app.get('/timeseries/:step', function(req, res) {
+function timeSeries(req, res) {
   var step = req.params.step;
-  res.locals.scripts = [
-    '/js/timeSeries.js'
-  ];
+  console.log(step);
+  res.locals.scripts = scripts[step];
   res.render('timeseries', {
     nav: navigation
   });
 
-  //res.send(step);
-});
+  //...
+}
 
 d3Router.route('/')
   .get(function(req, res) {
@@ -45,18 +51,17 @@ d3Router.route('/')
   });
 
 
-timeSeriesRouter.route('/')
-  .get(function(req, res) {
-    res.locals.scripts = [
-      './js/timeSeries.js'
-    ];
-    res.render('timeseries', {
-      nav: navigation
-    });
-  });
+//timeSeriesRouter.route('/')
+//  .get(function(req, res) {
+//    res.locals.scripts = [
+//      './js/timeSeries.js'
+//    ];
+//    res.render('timeseries', {
+//      nav: navigation
+//    });
+//  });
 
 app.use('/svg', d3Router);
-app.use('/timeseries', timeSeriesRouter);
 
 app.get('/test', function(req, res) {
   res.render('index', {

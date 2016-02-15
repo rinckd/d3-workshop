@@ -11,11 +11,8 @@
             <div id="timeSeries">
             <!--SCRIPTS-->
             <!--SCRIPTS END-->
-            <!-- Loop through all scripts that passed from controller -->
             <% if (scripts) { %>
-            <% for (var i = 0; i < scripts.length; i++) { %>
-            <script src="<%- scripts[i] %>"></script>
-            <% } %>
+                <script src="<%- scripts %>"></script>
             <% } %>
             </div>
         </div>
