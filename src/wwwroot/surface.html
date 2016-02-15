@@ -117,12 +117,13 @@
           return xScale(iterator);
         })
         .y(function(d) {
+          //console.log(d);
           return yScale(d.value);
         })
         .interpolate("basis");
 
     svg.append('path')
-        .attr('d', lineGenerator(data_json.data))
+        .attr('d', lineGenerator(data_json))
         .attr('stroke', 'green')
         .attr('stroke-width', 2)
         .attr('fill', 'none');

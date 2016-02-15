@@ -1,7 +1,4 @@
-{
-  "title": "Hourly Electrical Load",
-  "units": "kw",
-  "data":[
+[
   {
     "date":"01-01-00",
     "value":30.54499
@@ -35042,4 +35039,4 @@
     "date":"12-31-23",
     "value":26.3631
   }
-]}
+]

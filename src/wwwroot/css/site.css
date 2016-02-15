@@ -5,6 +5,20 @@ body {
   margin-top: 20px;
 
 }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
 #treeBackground {
   margin-top: 20px;
   background-color: #213627;

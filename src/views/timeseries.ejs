@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <% include ./partials/head %>
+</head>
+<body>
+<% include ./partials/sidebar %>
+<div id="wrapper">
+    <% include ./partials/navbar %>
+    <div id="main" class="container-fluid pull-left">
+        <div id="path" class="col-md-12">
+            <div id="timeSeries">
+            <!--SCRIPTS-->
+            <!--SCRIPTS END-->
+            <!-- Loop through all scripts that passed from controller -->
+            <% if (scripts) { %>
+            <% for (var i = 0; i < scripts.length; i++) { %>
+            <script src="<%- scripts[i] %>"></script>
+            <% } %>
+            <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
+</body>

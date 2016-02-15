@@ -1,22 +1,40 @@
 var express = require('express');
-var app = express();
 
+var app = express();
 var port = 8080;
 var d3Router = express.Router();
+var timeSeriesRouter = express.Router();
 
 app.use(express.static('wwwroot'));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-
 var navigation = [{
-  url:'/SVG',
+  url:'/svg',
   text:'Intro'
 }, {
-  url:'/Trees',
+  url:'/trees',
   text:'Trees'
+}, {
+  url:'/timeseries',
+  text:'Time Series'
 }];
 
+app.get('/:id', function(req,res) {
+  console.log(req.params.id);
+});
+
+app.get('/timeseries/:step', function(req, res) {
+  var step = req.params.step;
+  res.locals.scripts = [
+    '/js/timeSeries.js'
+  ];
+  res.render('timeseries', {
+    nav: navigation
+  });
+
+  //res.send(step);
+});
 
 d3Router.route('/')
   .get(function(req, res) {
@@ -25,12 +43,20 @@ d3Router.route('/')
       nav: navigation
     });
   });
-d3Router.route('/single')
+
+
+timeSeriesRouter.route('/')
   .get(function(req, res) {
-    res.send('hello single book');
+    res.locals.scripts = [
+      './js/timeSeries.js'
+    ];
+    res.render('timeseries', {
+      nav: navigation
+    });
   });
 
-app.use('/SVG', d3Router);
+app.use('/svg', d3Router);
+app.use('/timeseries', timeSeriesRouter);
 
 app.get('/test', function(req, res) {
   res.render('index', {

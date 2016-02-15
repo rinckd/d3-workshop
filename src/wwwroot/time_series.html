@@ -32,18 +32,7 @@
       clip-path: url(#clip);
     }
 
-    .axis path,
-    .axis line {
-      fill: none;
-      stroke: #000;
-      shape-rendering: crispEdges;
-    }
 
-    .brush .extent {
-      stroke: #fff;
-      fill-opacity: .125;
-      shape-rendering: crispEdges;
-    }
 
   </style>
 </head>
@@ -110,13 +99,13 @@
       .interpolate("monotone")
       .x(function(d) { return x(d.date); })
       .y0(height)
-      .y1(function(d) { return y(d.price); });
+      .y1(function(d) { return y(d.value); });
 
   var area2 = d3.svg.area()
       .interpolate("monotone")
       .x(function(d) { return x2(d.date); })
       .y0(height2)
-      .y1(function(d) { return y2(d.price); });
+      .y1(function(d) { return y2(d.value); });
 
   var svg = d3.select("body").append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -136,10 +125,11 @@
       .attr("class", "context")
       .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
+
   d3.json("data/hourly_load_profile.json", function(error, data) {
-    console.log(data);
+
     x.domain(d3.extent(function(d) { return d.date; }));
-    y.domain([0, d3.max(data.map(function(d) { return d.price; }))]);
+    y.domain([0, d3.max(data.map(function(d) { return d.value; }))]);
     x2.domain(x.domain());
     y2.domain(y.domain());
 
