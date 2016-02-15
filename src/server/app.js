@@ -3,7 +3,6 @@ var express = require('express');
 var app = express();
 var port = 8080;
 var d3Router = express.Router();
-//var timeSeriesRouter = express.Router();
 
 app.use(express.static('wwwroot'));
 app.set('views', './views');
@@ -18,10 +17,14 @@ var navigation = [{
 }, {
   url:'/timeseries/0',
   text:'Time Series'
+}, {
+  url:'/timeseries/2',
+  test:'Dimple'
 }];
 var scripts = [
   '/js/timeSeries0.js',
-  '/js/timeSeries1.js'
+  '/js/timeSeries1.js',
+  '/js/timeSeries2.js'
 ];
 app.get('/timeseries', function(req, res){
   req.params.step = 0;
@@ -51,16 +54,6 @@ d3Router.route('/')
   });
 
 
-//timeSeriesRouter.route('/')
-//  .get(function(req, res) {
-//    res.locals.scripts = [
-//      './js/timeSeries.js'
-//    ];
-//    res.render('timeseries', {
-//      nav: navigation
-//    });
-//  });
-
 app.use('/svg', d3Router);
 
 app.get('/test', function(req, res) {
@@ -70,15 +63,9 @@ app.get('/test', function(req, res) {
   });
 });
 
-//var links = [{'url':'index.html', 'title':'Intro to SVG'} , {'url':'tree.html', 'title':'Trees'},
-//  {'url':'surface.html', title: 'Time Series'},
-//  {'url':'surface4.html', 'title':'Heat Maps'}];
-//
-//getPosts(links);
 
 
 
 app.listen(port, function(err) {
-
   console.log('running server on port ' + port);
 });

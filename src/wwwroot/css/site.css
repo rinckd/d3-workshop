@@ -6,6 +6,11 @@ body {
 
 }
 
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
 .axis path,
 .axis line {
   fill: none;
