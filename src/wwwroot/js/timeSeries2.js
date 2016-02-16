@@ -13,9 +13,10 @@
     y = d3.scale.linear().range([height, 0]),
     y2 = d3.scale.linear().range([height2, 0]);
 
-  var xAxis = d3.svg.axis().scale(x).orient('bottom').tickFormat(d3.time.format('%B-%d-%H')),
-    xAxis2 = d3.svg.axis().scale(x2).orient('bottom').tickFormat(d3.time.format('%B')),
+  var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(20).tickSize(16,0).tickFormat(d3.time.format('%B-%d')),
+    xAxis2 = d3.svg.axis().scale(x2).orient('bottom').ticks(d3.time.months).tickSize(16,0).tickFormat(d3.time.format('%B')),
     yAxis = d3.svg.axis().scale(y).orient('left');
+
 
   var brush = d3.svg.brush()
     .x(x2)
@@ -35,7 +36,7 @@
 
   var svg = d3.select('#timeSeries').append('svg')
     .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom);
+    .attr('height', height + margin.top + margin.bottom + 100);
 
   svg.append('defs').append('clipPath')
     .attr('id', 'clip')
@@ -64,7 +65,7 @@
       .attr('d', area);
 
     focus.append('g')
-      .attr('class', 'x axis')
+      .attr('class', 'xAxis')
       .attr('transform', 'translate(0,' + height + ')')
       .call(xAxis);
 
@@ -88,12 +89,15 @@
       .selectAll('rect')
       .attr('y', -6)
       .attr('height', height2 + 7);
+
+
   });
+
 
   function brushed() {
     x.domain(brush.empty() ? x2.domain() : brush.extent());
     focus.select('.area').attr('d', area);
-    focus.select('.x.axis').call(xAxis);
+    focus.select('.xAxis').call(xAxis);
   }
 
 

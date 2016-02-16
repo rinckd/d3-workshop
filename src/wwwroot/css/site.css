@@ -2,7 +2,7 @@ body {
   background: #2a2c36;
 }
 #timeSeries {
-  margin-top: 20px;
+  margin-top: 10px;
 
 }
 
@@ -129,7 +129,9 @@ body {
   height: 600px;
   width: 1000px;
 }
-
+.xAxis {
+  font-size: 9px;
+}
 .btn:focus, .btn:active:focus, .btn.active:focus {
   outline: 0 none;
 }
