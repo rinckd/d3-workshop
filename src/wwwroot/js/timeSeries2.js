@@ -94,10 +94,19 @@
   });
 
 
-  function brushed() {
+  var xAxisUpdate = d3.svg
+    .axis()
+    .scale(x)
+    .orient('bottom')
+    .ticks(20)
+    .tickSize(16,0).tickFormat(d3.time.format('%B-%d'));
+
+
+    function brushed() {
     x.domain(brush.empty() ? x2.domain() : brush.extent());
     focus.select('.area').attr('d', area);
-    focus.select('.xAxis').call(xAxis);
+      console.log(xAxis);
+    focus.select('.xAxis').call(xAxisUpdate);
   }
 
 

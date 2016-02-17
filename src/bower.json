@@ -19,7 +19,9 @@
     "vis-editor": "^0.3.0",
     "font-awesome": "^4.5.0",
     "colorbrewer": "^1.0.0",
-    "dimple": "^2.1.6"
+    "dimple": "^2.1.6",
+    "nvd3": "^1.8.2",
+    "moment": "^2.11.2"
   },
   "overrides": {
     "bootstrap": {
