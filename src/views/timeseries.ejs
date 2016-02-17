@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <% include ./partials/head %>
+</head>
+<body>
+<% include ./partials/sidebar %>
+<div id="wrapper">
+    <% include ./partials/navbar %>
+    <div id="main" class="container-fluid pull-left">
+        <div id="path" class="col-md-12">
+            <div id="timeSeries">
+            <!--SCRIPTS-->
+            <!--SCRIPTS END-->
+            <% if (scripts) { %>
+                <script src="<%- scripts %>"></script>
+            <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
+</body>

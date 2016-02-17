@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <% include ./partials/head %>
+</head>
+<body>
+<% include ./partials/sidebar %>
+<div id="wrapper">
+    <% include ./partials/navbar %>
+    <div id="main" class="container-fluid pull-left">
+        <div id="path" class="col-md-12">
+            <h2>Circle</h2>
+            <aside>Click on any of the numbers in the code to change them</aside>
+            <div class="col-md-6">
+                <div class="editor"></div>
+            </div>
+            <div class="col-md-6">
+                <svg width="800" height=200>
+                    <path d="
+                    M50,100
+                    L131,66
+                    L259,115
+                    L339,50
+                    L400,98
+                    M350,150"
+                          fill=none
+                          stroke=#25B0B0></path>
+                </svg>
+                <script>
+                    (function() {
+                        var options = {
+                            mode: 'text/html',
+                            lineNumbers: true,
+                            viewportMargin: Infinity
+                        };
+                        var editor = d3.select("#path").select(".editor");
+                        var svg = d3.select("#path svg");
+                        var sticker = d3.sticker(svg.select("path").node());
+                        var cm = CodeMirror(editor.node(), options);
+                        Inlet(cm);
+                        var text = "<path d='\n  M50,100\n  L131,66\n  L259,115\n  L339,50\n  L400,98\n  M350,150\n  L100,150'\n  fill=none\n  stroke='#25B0B0'></path>"
+                        cm.setValue(text);
+                        cm.on("change", function() {
+                            var value = cm.getValue();
+                            sticker.string(value);
+                            sticker.deserialize();
+                            svg.selectAll("*").remove()
+                            sticker(svg)
+                        })
+                    }())
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
+</body>
