@@ -129,7 +129,44 @@ body {
   height: 600px;
   width: 1000px;
 }
-
+.axis {
+  fill: none;
+}
+.axis path, .axis line {
+  shape-rendering: crispEdges;
+  stroke: #eee;
+  stroke-width: 1;
+}
+.axis text {
+  opacity: 0;
+}
+.axis.labeled text {
+  opacity: 1;
+}
+.axis.hours text {
+  fill: #ccc;
+  font-size: 1rem;
+  font-family: "FontAwesome";
+}
+.axis.days text {
+  fill: #999;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+.axis.days path, .axis.days line {
+  stroke: #ccc;
+}
+.axis.days.labeled path, .axis.days.labeled line {
+  stroke: none;
+}
+.axis .nighttime {
+  fill: #20638f;
+  fill-opacity: 0.25;
+}
+.axis .daytime {
+  fill: #f1c40f;
+  fill-opacity: 0.15;
+}
 
 .xAxis {
   font-size: 9px;
