@@ -10,16 +10,19 @@ app.set('view engine', 'ejs');
 
 var navigation = [{
   url:'/svg',
-  text:'Intro'
-}, {
-  url:'/trees',
-  text:'Trees'
+  text:'Intro to SVG'
 }, {
   url:'/timeseries/0',
-  text:'Time Series'
+  text:'Simple Time Series'
 }, {
   url:'/timeseries/2',
-  test:'Dimple'
+  text:'More Time Series'
+}, {
+  url:'/timeseries/4',
+  text:'Legends'
+}, {
+  url:'/timeseries/3',
+  text:'NVD3'
 }];
 var scripts = [
   '/js/timeSeries0.js',
@@ -54,19 +57,13 @@ d3Router.route('/')
       nav: navigation
     });
   });
-
-
 app.use('/svg', d3Router);
-
 app.get('/test', function(req, res) {
   res.render('index', {
             title: 'D3 Intro',
             nav: navigation
   });
 });
-
-
-
 
 app.listen(port, function(err) {
   console.log('running server on port ' + port);

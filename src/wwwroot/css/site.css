@@ -129,16 +129,16 @@ body {
   height: 600px;
   width: 1000px;
 }
-.axis {
-  fill: none;
-}
+/*.axis {*/
+  /*fill: none;*/
+/*}*/
 .axis path, .axis line {
   shape-rendering: crispEdges;
   stroke: #eee;
   stroke-width: 1;
 }
 .axis text {
-  opacity: 0;
+  opacity: 1;
 }
 .axis.labeled text {
   opacity: 1;
