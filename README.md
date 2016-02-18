@@ -6,9 +6,9 @@
 The website is a small Node Express app. The relevant javascript you will want to look at to follow along is located in: src/wwwroot/js/
 
 Table of Contents:
-1. SVG Introduction. Dynamically update svg elements and see how they react.
-2. Generative Art. Tree recursion.
-3. Heat Map. ColorBrewer.
+- SVG Introduction. Dynamically update svg elements and see how they react.
+- Generative Art. Tree recursion.
+- Heat Map. ColorBrewer.
 
 TODO:
 d3.js and ES6
