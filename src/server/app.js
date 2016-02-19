@@ -23,6 +23,9 @@ var navigation = [{
 }, {
   url:'/timeseries/3',
   text:'NVD3'
+},{
+  url:'/heat',
+  text:'Heat Maps'
 }];
 var scripts = [
   '/js/timeSeries0.js',
@@ -58,7 +61,13 @@ d3Router.route('/')
     });
   });
 app.use('/svg', d3Router);
-app.get('/test', function(req, res) {
+app.get('/heat', function(req, res) {
+  res.render('heat', {
+    title: 'Heat Map',
+    nav: navigation
+  });
+});
+app.get('/', function(req, res) {
   res.render('index', {
             title: 'D3 Intro',
             nav: navigation

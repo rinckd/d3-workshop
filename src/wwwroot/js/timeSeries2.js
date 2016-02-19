@@ -17,7 +17,6 @@
     xAxis2 = d3.svg.axis().scale(x2).orient('bottom').ticks(d3.time.months).tickSize(16,0).tickFormat(d3.time.format('%B')),
     yAxis = d3.svg.axis().scale(y).orient('left');
 
-
   var brush = d3.svg.brush()
     .x(x2)
     .on('brush', brushed);
@@ -89,26 +88,19 @@
       .selectAll('rect')
       .attr('y', -6)
       .attr('height', height2 + 7);
-
-
   });
-
 
   var xAxisUpdate = d3.svg
     .axis()
     .scale(x)
     .orient('bottom')
     .ticks(20)
-    .tickSize(16,0).tickFormat(d3.time.format('%B-%d'));
+    .tickSize(16,0)
+    .tickFormat(d3.time.format('%B-%d'));
 
-
-    function brushed() {
+  function brushed() {
     x.domain(brush.empty() ? x2.domain() : brush.extent());
     focus.select('.area').attr('d', area);
-      console.log(xAxis);
     focus.select('.xAxis').call(xAxisUpdate);
   }
-
-
-
 })();

@@ -77,13 +77,13 @@
       .style('stroke-opacity', function (d) { return (maxDepth + opacity - d.depth) * 0.1; })
       .style('stroke-width', function (d) { return ((maxDepth + 1 - d.depth) * 0.4) + 'px'; });
     more.each(function(d) { d.totalLength = this.getTotalLength(); })
-      .attr("stroke-dasharray", function(d) { return d.totalLength + " " + d.totalLength; })
-      .attr("stroke-dashoffset", function(d) { return d.totalLength; })
+      .attr('stroke-dasharray', function(d) { return d.totalLength + ' ' + d.totalLength; })
+      .attr('stroke-dashoffset', function(d) { return d.totalLength; })
       .transition().duration(3000).ease('linear')
       .attr('stroke-dashoffset', 0);
 
     //var totalLength = path.node().length();
-    //path.attr('stoke-dasharray', totalLength + " " + totalLength)
+    //path.attr('stoke-dasharray', totalLength + ' ' + totalLength)
     //  .attr('stroke-dashoffset', totalLength)
     //  .transition().duration(3000).ease('linear')
     //  .attr('stroke-dashoffset', 0);
