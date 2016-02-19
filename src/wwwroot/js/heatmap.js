@@ -7,6 +7,14 @@
     var cellWidth = 1.5;
     var heatmapWidth = cellWidth * 365;
     var cellHeight = 7;
+
+    var translateX = 597;
+    var translateY = 217.5;
+    var legendSize = 167;
+    var tickSpacing = legendSize / 8.15;
+    var hourBarHeight = 4;
+
+
     var matrix = [];
     jsonFile.forEach(function(data, it) {
       var format = d3.time.format('%m-%d-%H');
@@ -73,42 +81,66 @@
       d3.selectAll('rect').style('stroke-width', function (p) {return p.x === d.x && p.y === d.y ? '1px' : '0px';});
     }
 
-    end = moment().startOf('day');
-    var start = moment(end).subtract('day', 1);
-    var timescale = d3.time.scale().nice(d3.time.day).domain([
-      start.toDate(),
-      end.toDate()
-    ]).range([
-      0,
-      500
-    ]);
-    var hoursAxis = d3.svg.axis().scale(timescale).orient('bottom').ticks(d3.time.hour, 3).tickPadding(6).tickSize(8).tickFormat(function (d) {
-      var hours;
-      hours = d.getHours();
-      if (hours === 6) {
-        return '\uF185';
-      } else if (hours === 18) {
-        return '\uF186';
-      } else {
-        return null;
-      }
-    });
+
+
+    var timescale = d3.time
+      .scale()
+      .nice(d3.time.day)
+      .domain([new Date(2011, 0, 2), new Date(2011, 0, 1)])
+      .range([0, legendSize]);
+
+    var hoursAxis = d3.svg
+      .axis()
+      .scale(timescale)
+      .orient('bottom')
+      .ticks(d3.time.hour, 3)
+      .tickPadding(6)
+      .tickSize(12, 20)
+      .tickFormat(function (d) {
+        var hours = d.getHours();
+        if (hours === 6) {
+          return '\uF185';
+        } else if (hours === 18) {
+          return '\uF186';
+        } else if (hours === 3) {
+          return '3AM';
+        } else if (hours === 12) {
+          return '12PM';
+        } else if (hours === 21) {
+          return '9PM';
+        } else {
+          return null;
+        }
+      });
+
+
     var hoursg = svg.append('g')
-      .classed('axis', true)
+      .classed('dayAxis', true)
       .classed('hours', true)
       .classed('labeled', true)
+      .attr('transform', 'translate(' + translateX + ',' + translateY + ') rotate(-90)')
       .call(hoursAxis);
-    var hoursTickSpacing = timescale(moment(start).add('hours', 3).toDate()) - timescale(start.toDate());
-    hoursg.selectAll('g.tick').insert('rect', ':first-child').attr('class', function (d, i) {
-      var hours;
-      hours = d.getHours();
-      if (hours < 6 || hours >= 18) {
-        return 'nighttime';
-      } else {
-        return 'daytime';
-      }
-    }).attr('x', 0).attr('width', hoursTickSpacing).attr('height', 4);
 
+
+    var first = 0;
+    hoursg.selectAll('g.tick')
+      .insert('rect', ':first-child')
+      .attr('class', function (d) {
+        var hours = d.getHours();
+        if (hours <= 6 || hours > 18) {
+          return 'nighttime';
+        } else {
+          return 'daytime';
+        }
+      })
+      .attr('width', tickSpacing)
+      .attr('height', function () {
+        if (first === 0) {
+          first++;
+          return 0;
+        }
+        return hourBarHeight;
+      });
 
   });
 })();

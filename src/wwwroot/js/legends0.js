@@ -41,7 +41,7 @@
       } else {
         return null;
       }
-  });
+    });
 
 
   var hoursg = svg.append('g')

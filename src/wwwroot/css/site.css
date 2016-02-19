@@ -128,7 +128,7 @@ body {
 
 .dayAxis.hours text {
   fill: #333;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-family: "FontAwesome";
 }
 .dayAxis.days text {
