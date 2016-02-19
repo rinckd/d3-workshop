@@ -8,49 +8,38 @@
     <% include ./partials/navbar %>
     <div id="main" class="container-fluid pull-left">
         <div id="path" class="col-md-12">
-            <h2>Path SVG</h2>
-            <aside>Click on any of the numbers in the code to change them</aside>
-            <div class="col-md-6">
-                <div class="editor"></div>
-            </div>
-            <div class="col-md-6">
-                <svg width="800" height=200>
-                    <path d="
-                    M50,100
-                    L131,66
-                    L259,115
-                    L339,50
-                    L400,98
-                    M350,150"
-                          fill=none
-                          stroke=#25B0B0></path>
-                </svg>
-                <script>
-                    (function() {
-                        var options = {
-                            mode: 'text/html',
-                            lineNumbers: true,
-                            viewportMargin: Infinity
-                        };
-                        var editor = d3.select("#path").select(".editor");
-                        var svg = d3.select("#path svg");
-                        var sticker = d3.sticker(svg.select("path").node());
-                        var cm = CodeMirror(editor.node(), options);
-                        Inlet(cm);
-                        var text = "<path d='\n  M50,100\n  L131,66\n  L259,115\n  L339,50\n  L400,98\n  M350,150\n  L100,150'\n  fill=none\n  stroke='#25B0B0'></path>"
-                        cm.setValue(text);
-                        cm.on("change", function() {
-                            var value = cm.getValue();
-                            sticker.string(value);
-                            sticker.deserialize();
-                            svg.selectAll("*").remove()
-                            sticker(svg)
-                        })
-                    }())
-                </script>
-            </div>
+            <div id="heatmap"></div>
         </div>
+        <div id="legend"></div>
+
+        <p>Additional References: </p>
+        Start here ->
+        <ui>
+            <ul>
+                <a href="https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/">https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/</a>
+            </ul>
+            <ul>
+                <a href="http://tools.medialab.sciences-po.fr/iwanthue/">http://tools.medialab.sciences-po.fr/iwanthue/</a>
+            </ul>
+            <ul>
+                <a href="http://colorbrewer2.org/">http://colorbrewer2.org/</a>
+            </ul>
+            <ul>
+                <a href="http://tristen.ca/hcl-picker/#/hlc/30/0/332E27/F9E5C9">http://tristen.ca/hcl-picker/#/hlc/30/0/332E27/F9E5C9</a>
+            </ul>
+            <ul>
+                <a href="https://github.com/Siddharth11/gradStop.js">https://github.com/Siddharth11/gradStop.js</a>
+            </ul>
+        </ui>        <a href="https://eagereyes.org/basics/rainbow-color-map">https://eagereyes.org/basics/rainbow-color-map</a>
+        <a href="https://vis4.net/blog/posts/mastering-multi-hued-color-scales/">https://vis4.net/blog/posts/mastering-multi-hued-color-scales/</a>
+        <a href="https://gka.github.io/palettes/#colors=feeb65,e4521b,fd342f|steps=64|bez=1|coL=1">https://gka.github.io/palettes/#colors=feeb65,e4521b,fd342f|steps=64|bez=1|coL=1</a>
+        <a href="https://medium.com/graphiq-engineering/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283#.rttsx8n27">https://medium.com/graphiq-engineering/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283#.rttsx8n27</a>
     </div>
+
 </div>
+<script src="lib/d3-legend.js"></script>
+<script src="js/heatmap.js">
+
+</script>
 <% include ./partials/footer %>
 </body>
