@@ -146,7 +146,7 @@ body {
 }
 .dayAxis .daytime {
   fill: #ffff00;
-  fill-opacity: 0.45;
+  fill-opacity: 0.95;
 }
 
 .btn:focus, .btn:active:focus, .btn.active:focus {
