@@ -63,6 +63,10 @@
       .style('fill-opacity', function (d) {return d.weight * 0.2;})
       .on('mouseover', gridOver);
 
+    var testColorScale = d3.scale.ordinal()
+      .domain(matrix.map(function (d) {return colorScale(d.weight); }))
+      .rangeRoundBands([0, 800], 1);
+    var testAxis = d3.svg.axis().scale(testColorScale).orient("bottom");
 
     svg.append('g')
       .attr('class', 'legend')
@@ -80,8 +84,6 @@
       console.log(d);
       d3.selectAll('rect').style('stroke-width', function (p) {return p.x === d.x && p.y === d.y ? '1px' : '0px';});
     }
-
-
 
     var timescale = d3.time
       .scale()
@@ -113,7 +115,6 @@
         }
       });
 
-
     var hoursg = svg.append('g')
       .classed('dayAxis', true)
       .classed('hours', true)
@@ -142,5 +143,52 @@
         return hourBarHeight;
       });
 
+
+    var xAxisTranslateX = 50.5;
+    var yAxisTranslateY = 217;
+    var xAxisLength = 547;
+    var xTimeScale = d3.time
+      .scale()
+      .domain([new Date(2015, 0, 1), new Date(2015, 11, 31)])
+      .range([0, xAxisLength]);
+
+    var xAxis = d3.svg
+      .axis()
+      .scale(xTimeScale)
+      .orient('bottom')
+      .ticks(d3.time.month, 1)
+      .tickPadding(6)
+      .tickSize(12, 20)
+      .tickFormat(function (d) {
+        var month = d.getMonth();
+        if (month === 0)
+        {
+          return null;
+        }
+        var formatDate = d3.time.format("%b");
+        return formatDate(d);
+      });
+
+
+    var xAxisg = svg.append('g')
+      .classed('dayAxis', true)
+      .classed('hours', true)
+      .classed('labeled', true)
+      .attr('transform', 'translate(' + xAxisTranslateX + ',' + yAxisTranslateY + ') rotate(0)')
+      .call(xAxis);
+
+    svg.append("g")
+      .attr("class", "Testaxis")
+      .attr("transform", "translate(0," + 0 + ")")
+      .call(testAxis);
+
+    svg.selectAll("circle")
+      .data( testAxis )
+      .enter()
+      .append("circle")
+      .attr("r", 18 )
+      .attr("cx", d3.scale.linear().domain([-1, 10]).range([0, 400]) )
+      .attr("cy", 25)
+      .attr("fill", testAxis );
   });
 })();
