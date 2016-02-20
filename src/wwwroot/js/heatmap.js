@@ -14,7 +14,6 @@
     var tickSpacing = legendSize / 8.15;
     var hourBarHeight = 4;
 
-
     var matrix = [];
     jsonFile.forEach(function(data, it) {
       var format = d3.time.format('%m-%d-%H');
@@ -63,11 +62,6 @@
       .style('fill-opacity', function (d) {return d.weight * 0.2;})
       .on('mouseover', gridOver);
 
-    var testColorScale = d3.scale.ordinal()
-      .domain(matrix.map(function (d) {return colorScale(d.weight); }))
-      .rangeRoundBands([0, 800], 1);
-    var testAxis = d3.svg.axis().scale(testColorScale).orient("bottom");
-
     svg.append('g')
       .attr('class', 'legend')
       .attr('transform', 'translate(780,50)');
@@ -81,8 +75,12 @@
       .call(legend);
 
     function gridOver(d) {
-      console.log(d);
-      d3.selectAll('rect').style('stroke-width', function (p) {return p.x === d.x && p.y === d.y ? '1px' : '0px';});
+      $('svg rect')
+        .tipsy({ gravity: 'w', html: true, title: function() {
+          //{id: "292-22", x: 292, y: 22, weight: 32.12814}
+          return d.weight + 'kW';
+        }
+      });
     }
 
     var timescale = d3.time
@@ -143,7 +141,6 @@
         return hourBarHeight;
       });
 
-
     var xAxisTranslateX = 50.5;
     var yAxisTranslateY = 217;
     var xAxisLength = 547;
@@ -169,26 +166,11 @@
         return formatDate(d);
       });
 
-
     var xAxisg = svg.append('g')
       .classed('dayAxis', true)
       .classed('hours', true)
       .classed('labeled', true)
       .attr('transform', 'translate(' + xAxisTranslateX + ',' + yAxisTranslateY + ') rotate(0)')
       .call(xAxis);
-
-    svg.append("g")
-      .attr("class", "Testaxis")
-      .attr("transform", "translate(0," + 0 + ")")
-      .call(testAxis);
-
-    svg.selectAll("circle")
-      .data( testAxis )
-      .enter()
-      .append("circle")
-      .attr("r", 18 )
-      .attr("cx", d3.scale.linear().domain([-1, 10]).range([0, 400]) )
-      .attr("cy", 25)
-      .attr("fill", testAxis );
   });
 })();
