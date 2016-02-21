@@ -2,21 +2,23 @@ var express = require('express');
 
 var app = express();
 var port = 8080;
-var d3Router = express.Router();
 
 app.use(express.static('wwwroot'));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
 var navigation = [{
-  url:'/svg',
+  url:'/',
   text:'Intro to SVG'
 }, {
   url:'/timeseries/0',
   text:'Simple Time Series'
 }, {
   url:'/timeseries/2',
-  text:'More Time Series'
+  text:'Time Series 2'
+}, {
+  url:'/timeseries/3',
+  text:'NVD3'
 }, {
   url:'/legends/0',
   text:'Hour Legend'
@@ -24,28 +26,26 @@ var navigation = [{
   url:'/legends/1',
   text:'Year Legend'
 },{
-    url:'/timeseries/3',
-    text:'NVD3'
-},{
   url:'/heat',
   text:'Heat Maps'
 }];
 
 app.get('/timeseries', function(req, res){
   req.params.step = 0;
-  timeSeries(req, res, 'timeseries');
+  scratchPad(req, res, 'timeseries');
 });
 app.get('/timeseries/:step', function(req, res) {
-  timeSeries(req, res, 'timeseries');
+  scratchPad(req, res, 'timeseries');
 });
 app.get('/legends', function(req, res) {
   req.params.step = 0;
-  timeSeries(req, res, 'legends');
+  scratchPad(req, res, 'legends');
 });
 app.get('/legends/:step', function(req, res) {
-  timeSeries(req, res, 'legends');
+  scratchPad(req, res, 'legends');
 });
-function timeSeries(req, res, type) {
+
+function scratchPad(req, res, type) {
   var step = req.params.step;
   var script;
   if (type === 'timeseries') {
@@ -53,30 +53,19 @@ function timeSeries(req, res, type) {
   } else {
     script = '/js/legends' + step + '.js';
   }
-  console.log(script);
   res.locals.scripts = script;
-  res.render('timeseries', {
+  res.render('scratchpad', {
     nav: navigation
   });
 }
 
-d3Router.route('/')
-  .get(function(req, res) {
-    res.render('svg', {
-      title: 'SVG Intro',
-      nav: navigation
-    });
-  });
-app.use('/svg', d3Router);
 app.get('/heat', function(req, res) {
   res.render('heat', {
-    title: 'Heat Map',
     nav: navigation
   });
 });
 app.get('/', function(req, res) {
-  res.render('index', {
-            title: 'D3 Intro',
+  res.render('svg', {
             nav: navigation
   });
 });

@@ -21,7 +21,7 @@
       var day = d3.time.dayOfYear(d3Date);
       var hour = format.parse(data.date).getHours();
       matrix.push({id: day + '-' + hour, x: day, y: hour, weight: data.value});
-      });
+    });
 
     var maxValue = d3.max(jsonFile.map(function(data) { return data.value; }));
     var colors = ['rgb(0, 0, 0)','rgb(34, 39, 90)',
@@ -66,17 +66,9 @@
       .attr('class', 'legend')
       .attr('transform', 'translate(780,50)');
 
-    var legend = d3.legend.color()
-      .scale(colorScale)
-      .cells([0.1, 5, 10, 50])
-      .labels('');
-
-    svg.select('.legend')
-      .call(legend);
-
     function gridOver(d) {
       $('svg rect')
-        .tipsy({ gravity: 'w', html: true, title: function() {
+        .tipsy({gravity: 'w', html: true, title: function() {
           //{id: "292-22", x: 292, y: 22, weight: 32.12814}
           return d.weight + 'kW';
         }
@@ -120,7 +112,6 @@
       .attr('transform', 'translate(' + translateX + ',' + translateY + ') rotate(-90)')
       .call(hoursAxis);
 
-
     var first = 0;
     hoursg.selectAll('g.tick')
       .insert('rect', ':first-child')
@@ -162,7 +153,7 @@
         {
           return null;
         }
-        var formatDate = d3.time.format("%b");
+        var formatDate = d3.time.format('%b');
         return formatDate(d);
       });
 

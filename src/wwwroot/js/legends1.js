@@ -20,14 +20,12 @@
     .tickSize(12, 20)
     .tickFormat(function (d) {
       var month = d.getMonth();
-      if (month === 0)
-      {
+      if (month === 0) {
         return null;
       }
-      var formatDate = d3.time.format("%b");
+      var formatDate = d3.time.format('%b');
       return formatDate(d);
     });
-
 
   svg.append('g')
     .classed('dayAxis', true)
@@ -35,6 +33,5 @@
     .classed('labeled', true)
     .attr('transform', 'translate(' + xAxisTranslateX + ',' + yAxisTranslateY + ') rotate(0)')
     .call(xAxis);
-
 
 }());

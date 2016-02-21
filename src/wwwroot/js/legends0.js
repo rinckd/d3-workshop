@@ -43,14 +43,12 @@
       }
     });
 
-
   var hoursg = svg.append('g')
     .classed('dayAxis', true)
     .classed('hours', true)
     .classed('labeled', true)
     .attr('transform', 'translate(' + translateX + ',' + translateY + ') rotate(-90)')
     .call(hoursAxis);
-
 
   var first = 0;
   hoursg.selectAll('g.tick')
