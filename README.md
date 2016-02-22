@@ -1,10 +1,23 @@
 # Getting Started
 
-1. `cd src` then use `npm install` and `bower install` to install the necessary dependencies.
+## Prerequisites
+
+This is a tiny Node/Express app which provides a nice sketchpad for playing around the d3.js. 
+
+You'll need:
+- node: https://nodejs.org/en/
+- gulp: `npm install gulp -g`
+
+## To Run
+1. `cd src` then use `npm install` to install the necessary dependencies.
 2. `gulp serve` will start server/app.js and browser-sync. This will launch a browser pointing to the start of the lecture. 
 
-The website is a small Node Express app. The relevant javascript you will want to look at to follow along is located in: src/wwwroot/js/
+## To use
+The relevant javascript you will want to look at to follow along is located in: src/wwwroot/js/
 
+It is designed for rapid prototyping. For example you can add a timeseries5.js to src/wwwroot/js and use d3. Your script will be immediately available at the route: http://localhost:3000/timeseries/5. 
+
+#
 Table of Contents:
 - SVG Introduction. Dynamically update svg elements and see how they react.
 - Generative Art. Tree recursion.
