@@ -54,6 +54,7 @@
 	var CodeMirror = __webpack_require__(17);
 	window.jQuery = CodeMirror;
 	window.CodeMirror = CodeMirror;
+
 	__webpack_require__(18);
 	__webpack_require__(20);
 	__webpack_require__(21);

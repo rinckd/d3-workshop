@@ -8,9 +8,10 @@ require('bootstrap');
 var CodeMirror = require('codemirror');
 window.jQuery = CodeMirror;
 window.CodeMirror = CodeMirror;
+
 require('colorbrewer');
-require('../sticker.js');
-require('../inlet.min.js');
+require('../lib/sticker.js');
+require('../lib/inlet.min.js');
 
 require('codemirror/lib/codemirror.css');
 require('nvd3/build/nv.d3.min.css');
