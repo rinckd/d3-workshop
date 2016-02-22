@@ -4,6 +4,7 @@ const jshint = require('gulp-jshint');
 const browserSync = require('browser-sync');
 const jsFiles = ['*.js', 'wwwroot/js/*.js'];
 const nodeMon = require('gulp-nodemon');
+const webpack = require('webpack-stream');
 
 gulp.task('lint', () => {
   return gulp.src(jsFiles)
@@ -11,6 +12,22 @@ gulp.task('lint', () => {
     .pipe(jscs.reporter())
     .pipe(jshint())
     .pipe(jshint.reporter());
+});
+
+gulp.task('webpack', function() {
+  return gulp.src('wwwroot/js/webpack/entry.js')
+    .pipe(webpack({
+      output: {
+        filename: 'bundle.js'
+      },
+      module: {
+        loaders: [
+          { test: /\.css$/, loader: 'style!css' },
+          { test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader?limit=100000' }
+        ]
+      }
+    }))
+    .pipe(gulp.dest('wwwroot/js/webpack'));
 });
 
 gulp.task('inject', () => {
@@ -33,7 +50,7 @@ gulp.task('inject', () => {
     .pipe(gulp.dest('./wwwroot'));
 });
 
-gulp.task('serve', ['lint'], () => {
+gulp.task('serve', [], () => {
   startBrowserSync();
   let options = {
     script: 'server/app.js',

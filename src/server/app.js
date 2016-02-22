@@ -66,7 +66,7 @@ app.get('/heat', function(req, res) {
 });
 app.get('/', function(req, res) {
   res.render('svg', {
-            nav: navigation
+    nav: navigation
   });
 });
 

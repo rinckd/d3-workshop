@@ -67,12 +67,7 @@
       .attr('transform', 'translate(780,50)');
 
     function gridOver(d) {
-      $('svg rect')
-        .tipsy({gravity: 'w', html: true, title: function() {
-          //{id: "292-22", x: 292, y: 22, weight: 32.12814}
-          return d.weight + 'kW';
-        }
-      });
+      console.log(d);
     }
 
     var timescale = d3.time
