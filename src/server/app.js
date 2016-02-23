@@ -20,10 +20,10 @@ var navigation = [{
   url:'/timeseries/3',
   text:'NVD3'
 }, {
-  url:'/legends/0',
+  url:'/timeseries/4',
   text:'Hour Legend'
 }, {
-  url:'/legends/1',
+  url:'/timeseries/5',
   text:'Year Legend'
 },{
   url:'/heat',
@@ -37,12 +37,12 @@ app.get('/timeseries', function(req, res){
 app.get('/timeseries/:step', function(req, res) {
   scratchPad(req, res, 'timeseries');
 });
-app.get('/legends', function(req, res) {
+app.get('/scratchpad', function(req, res) {
   req.params.step = 0;
-  scratchPad(req, res, 'legends');
+  scratchPad(req, res, 'scratchpad');
 });
-app.get('/legends/:step', function(req, res) {
-  scratchPad(req, res, 'legends');
+app.get('/scratchpad/:step', function(req, res) {
+  scratchPad(req, res, 'scratchpad');
 });
 
 function scratchPad(req, res, type) {
@@ -51,7 +51,7 @@ function scratchPad(req, res, type) {
   if (type === 'timeseries') {
     script = '/js/timeSeries' + step + '.js';
   } else {
-    script = '/js/legends' + step + '.js';
+    script = '/js/scratchpad' + step + '.js';
   }
   res.locals.scripts = script;
   res.render('scratchpad', {

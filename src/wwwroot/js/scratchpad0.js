@@ -1,7 +1,10 @@
 (function () {
   var svgWidth = 700;
   var svgHeight = 800;
-  var svg = d3.select('#timeSeries').append('svg').attr('width', svgWidth).attr('height', svgHeight);
+  var svg = d3.select('#timeSeries')
+    .append('svg')
+    .attr('width', svgWidth)
+    .attr('height', svgHeight);
 
   var translateX = 30.5;
   var translateY = 400.5;
