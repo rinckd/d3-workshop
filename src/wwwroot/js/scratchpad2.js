@@ -1,4 +1,4 @@
-(function () {
+(function() {
   const width = 700;
   const height = 800;
   var start = true;
@@ -9,34 +9,34 @@
     .attr('height', height);
 
   var path = svg.append('svg:path')
-    .attr('d','M100 100 L300 100 L200 300z')
+    .attr('d', 'M 0,300 A 200,200 0 0,1 400,300')
+    .attr('id', 'arc')
     .style('stroke-width', 2)
     .style('stroke', 'steelblue')
     .style('fill', 'none');
 
-  var totalLength = path.node().getTotalLength();
+  svg.append('text')
+    .append('textPath')
+    .attr('xlink:href', '#arc')
+    .style('text-anchor', 'middle')
+    .attr('startOffset', '50%')
+    .text('data driven documents')
+    .each(repeat);
 
-  path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
-    .attr('stroke-dashoffset', totalLength)
-    .transition()
-    .duration(2000)
-    .ease('linear')
-    .attr('stroke-dashoffset', 0);
 
-  svg.on('click', function() {
-    if (start) {
-      start = false;
-      path.transition()
-        .duration(2000)
-        .ease('linear')
-        .attr('stroke-dashoffset', totalLength);
-    } else {
-      start = true;
-      path.transition()
-        .duration(2000)
-        .ease('linear')
-        .attr('stroke-dashoffset', 0);
-    }
-  });
+  function repeat() {
+    svg.selectAll("path")
+      .transition().duration(2000).delay(500)
+      .attr("d", "M75,300 A125,125 0 0,1 325,300")
+      .transition().duration(2000)
+      .attr('d', 'M 0,300 A 200,200 0 0,1 400,300')
+      .each('end', repeat);
+  }
 
 }());
+
+
+
+
+
+
