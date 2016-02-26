@@ -1,4 +1,5 @@
 (function() {
+  'use strict';
   const width = 700;
   const height = 800;
   var start = true;

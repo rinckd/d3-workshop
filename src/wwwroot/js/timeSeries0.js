@@ -1,5 +1,6 @@
 (function() {
-  var width = 800;
+  'use strict';
+  var width = 600;
   var height = 400;
   var margins = {
     top: 40,
@@ -20,7 +21,7 @@
 
     var xScale = d3.scale.linear()
       .range([margins.left, width - margins.right])
-      .domain([0,23]);
+      .domain([0,12]);
 
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
@@ -56,5 +57,22 @@
       .call(yAxis)
       .attr('transform', 'translate(' + (margins.left) + ',0)')
       .attr('class', 'axis');
+
+    // now add titles to the axes
+    //svg.append('text')
+    //  .attr('class', 'x label')
+    //  .attr('text-anchor', 'end')
+    //  .attr('x', (margins.left - margins.right + width) / 2)
+    //  .attr('y', height - 6)
+    //  .text('Hour');
+    //
+    //svg.append('text')
+    //  .attr('class', 'y label')
+    //  .attr('text-anchor', 'end')
+    //  .attr('y', 6)
+    //  .attr('x', -((height + margins.top - margins.bottom)/2))
+    //  .attr('dy', '.75em')
+    //  .attr('transform', 'rotate(-90)')
+    //  .text('a');
   });
 })();

@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   d3.json('data/hourly_load_profile.json', function (error, jsonFile) {
     if (error) {
       return console.error(error);

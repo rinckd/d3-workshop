@@ -1,7 +1,7 @@
 // site.js
 
 (function () {
-
+  'use strict';
   var $sidebarAndWrapper = $('#sidebar,#wrapper');
   var $icon = $('#sidebarToggle i.fa');
 

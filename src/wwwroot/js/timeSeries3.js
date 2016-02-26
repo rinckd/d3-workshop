@@ -1,4 +1,5 @@
 (function() {
+  'use strict';
   d3.json('/data/hourly_load_profile.json', function(error, dataJson) {
     var height = 500;
     var minTime = new Date(2016, 0, 1);
