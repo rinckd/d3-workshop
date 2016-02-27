@@ -19,14 +19,15 @@
           </div>
           <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
             <div class="mdl-card__supporting-text" id="drawspace">
-              <svg width="800" height=200>
+              <svg width="400" height="400">
                 <path d="
-                M50,100
+                M10,100
                 L131,66
                 L259,115
-                L339,50"
+                L200,50"
                 fill=none
-                stroke=#25B0B0></path>
+                stroke=#25B0B0
+                stroke-width=7></path>
                 </svg>
                 <script>
                 (function() {
@@ -40,7 +41,7 @@
                   var sticker = d3.sticker(svg.select("path").node());
                   var cm = CodeMirror(editor.node(), options);
                   Inlet(cm);
-                  var text = "<path d='\n  M50,100\n  L131,66\n  L259,115\n  L339,50'\n  fill='none'\n  stroke='#25B0B0'></path>"
+                  var text = "<path d='\n  M10,100\n  L131,66\n  L259,115\n  L200,50'\n  fill='none'\n  stroke='#25B0B0'\n  stroke-width='7'\n></path>"
                   cm.setValue(text);
                   cm.on("change", function() {
                     var value = cm.getValue();
