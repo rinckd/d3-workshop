@@ -1,6 +1,7 @@
 (function () {
   'use strict';
-  d3.json('data/hourly_load_profile.json', function (error, jsonFile) {
+  d3.json('data/wind_turbine.json', function (error, jsonFile) {
+
     if (error) {
       return console.error(error);
     }
@@ -17,15 +18,19 @@
 
     var matrix = [];
     jsonFile.forEach(function(data, it) {
-      var format = d3.time.format('%m-%d-%H');
+      //console.log(data.date);
+      var format = d3.time.format('%m/%d/%Y %H:%M');
       var d3Date = format.parse(data.date);
+
       var day = d3.time.dayOfYear(d3Date);
       var hour = format.parse(data.date).getHours();
       matrix.push({id: day + '-' + hour, x: day, y: hour, weight: data.value});
     });
+    //console.log(matrix);
 
     var maxValue = d3.max(jsonFile.map(function(data) { return data.value; }));
-    var colors = ['rgb(0, 0, 0)','rgb(34, 39, 90)',
+
+    var colors = ['rgb(0,0,0)', 'rgb(0, 0, 0)','rgb(34, 39, 90)',
       'rgb(51, 45, 135)','rgb(69, 48, 192)', 'rgb(46, 44, 213)',
       'rgb(23, 40, 234)','rgb(0, 35, 255)', 'rgb(0, 72, 255)',
       'rgb(0, 108, 255)', 'rgb(0, 146, 255)', 'rgb(0, 182, 255)',
@@ -45,7 +50,7 @@
     var svg = d3.select('#heatmap')
       .append('svg')
       .attr('width', 800)
-      .attr('height', 300);
+      .attr('height', 600);
     svg.append('g')
       .attr('transform', 'translate(50,50)')
       .attr('id', 'adjacencyG')
@@ -60,7 +65,6 @@
       .style('stroke', 'black')
       .style('stroke-width', 0)
       .style('fill', function (d) { return colorScale(d.weight); })
-      .style('fill-opacity', function (d) {return d.weight * 0.2;})
       .on('mouseover', gridOver);
 
     svg.append('g')
@@ -76,6 +80,17 @@
       .nice(d3.time.day)
       .domain([new Date(2011, 0, 2), new Date(2011, 0, 1)])
       .range([0, legendSize]);
+
+    var test = svg.append('g')
+      .selectAll('rect')
+      .data(colors)
+      .enter()
+      .append('rect')
+      .attr('x', function(d, i) { return 50 + 9*i })
+      .attr('y', 260)
+      .attr('width', 8.5)
+      .attr('height', 10)
+      .attr('fill', function(d) { return d;});
 
     var hoursAxis = d3.svg
       .axis()

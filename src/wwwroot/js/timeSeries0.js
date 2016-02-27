@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+
   var width = 600;
   var height = 400;
   var margins = {
@@ -8,6 +9,7 @@
     bottom: 40,
     left: 50
   };
+
 
   d3.json('/data/hourly_load_profile.json', function (error, json) {
     if (error) {
@@ -21,7 +23,7 @@
 
     var xScale = d3.scale.linear()
       .range([margins.left, width - margins.right])
-      .domain([0,12]);
+      .domain([0,23]);
 
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
@@ -34,9 +36,7 @@
       .orient('left');
 
     var lineGenerator = d3.svg.line()
-      .x(function(d, iterator) {
-        return xScale(iterator);
-      })
+      .x(function(d, iterator) { return xScale(iterator); })
       .y(function(d) {
         //console.log(d);
         return yScale(d.value);
