@@ -1,0 +1,14 @@
+<header class="mdl-layout__header">
+  <div class="mdl-layout__header-row">
+    <span class="mdl-layout-title">Intro to D3</span>
+  </div>
+</header>
+<div class="data-drawer mdl-layout__drawer">
+  <nav class="data-navigation mdl-navigation">
+    <% for(var i = 0; i < nav.length; i++) {%>
+    <div>
+      <a class="mdl-navigation__link" href="<%=nav[i].url%>"><%=nav[i].text%></a>
+    </div>
+    <%}%>
+  </nav>
+</div>

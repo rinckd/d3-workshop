@@ -1,115 +1,46 @@
 body {
-  background: #2a2c36;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
-/* ID for time series plots */
-#timeSeries {
-  margin-top: 10px;
+.data-drawer {
+  border: none;
+  background-color: #000;
 }
 
+.data-drawer .data-navigation .mdl-navigation__link:hover {
+  background-color: #ffffff;
+  color: #37474F;
+  text-decoration: none;
+}
+.data-drawer .data-navigation .mdl-navigation__link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.data-content {
+  width: 650px;
+  max-width: 1080px;
+}
+
+.time-series-path {
+  fill: rgb(63,81,181);
+}
 /*area for first scrolling time series*/
 .area {
-  fill: steelblue;
+  fill: rgb(63,81,181);
   clip-path: url(#clip);
 }
 
 .brush .extent {
-  stroke: #fff;
+  stroke: #000099;
   fill-opacity: .125;
   shape-rendering: crispEdges;
-}
-
-.menu {
-  font-size: 12px;
-}
-
-.menu li {
-  list-style-type: none;
-}
-
-.menu li a {
-  color: #eee;
 }
 
 .legend rect {
   fill:white;
   stroke:black;
   opacity:0.8;}
-  
-#sidebar {
-  background: #2a2c36;
-  color: #eee;
-  position: fixed;
-  height: 100%;
-  width: 150px;
-  overflow: hidden;
-  left: 0;
-  margin: 0;
-  -moz-transition: left ease .25s;
-  -o-transition: left ease .25s;
-  -webkit-transition: left ease .25s;
-  transition: left ease .25s;
-}
-
-#sidebar.hide-sidebar {
-  left: -150px;
-  -moz-transition: left ease .25s;
-  -o-transition: left ease .25s;
-  -webkit-transition: left ease .25s;
-  transition: left ease .25s;
-}
-
-#sidebarToggle {
-  color: #ffffff;
-  font-size: 25px;
-  background: #2a2c36;
-  margin: 0 0 0 10px;
-}
-
-#wrapper {
-  background: #2a2c36;
-  margin: 0 0 0 150px;
-  -moz-transition: margin-left ease .25s;
-  -o-transition: margin-left ease .25s;
-  -webkit-transition: margin-left ease .25s;
-  transition: margin-left ease .25s;
-}
-
-#wrapper.hide-sidebar {
-  margin-left: 0;
-  -moz-transition: margin-left ease .25s;
-  -o-transition: margin-left ease .25s;
-  -webkit-transition: margin-left ease .25s;
-  transition: margin-left ease .25s;
-}
-
-#navlinks {
-  margin-top: 120px;
-  margin-left: 8px;
-}
-
-.navlink  {
-  font-size: 15px;
-  line-height: 25px;
-  color: #fff;
-  text-decoration: none;
-  border-bottom: 1px solid #222;
-}
-
-.navlink:hover {
-  background: #fff;
-  width: 100%;
-  text-decoration: none;
-}
-
-#main {
-  margin-top: 0px;
-  margin-right: 30px;
-  border-radius: 25px;
-  background: #fff;
-  height: 600px;
-  width: 1000px;
-}
 
 /*Time Series Axis*/
 .axis path, .axis line {
@@ -147,13 +78,5 @@ body {
 .dayAxis .daytime {
   fill: #ffff00;
   fill-opacity: 0.95;
-}
-
-.btn:focus, .btn:active:focus, .btn.active:focus {
-  outline: 0 none;
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-  background: #fefeff;
-  box-shadow: none;
 }
 

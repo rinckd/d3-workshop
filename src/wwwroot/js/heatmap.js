@@ -50,7 +50,7 @@
     var svg = d3.select('#heatmap')
       .append('svg')
       .attr('width', 800)
-      .attr('height', 600);
+      .attr('height', 400);
     svg.append('g')
       .attr('transform', 'translate(50,50)')
       .attr('id', 'adjacencyG')

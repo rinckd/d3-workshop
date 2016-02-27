@@ -3,43 +3,49 @@
     <% include ./partials/head %>
 </head>
 <body>
-<% include ./partials/sidebar %>
-<div id="wrapper">
-    <% include ./partials/navbar %>
-    <div id="main" class="container-fluid pull-left">
-        <div id="path" class="col-md-12">
-          <div id="heatmap"></div>
-        </div>
-        <div id="legend"></div>
 
-        <p>Additional References: </p>
-        Start here ->
-        <ui>
-            <ul>
-                <a href="https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/">https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/</a>
-            </ul>
-            <ul>
-                <a href="http://tools.medialab.sciences-po.fr/iwanthue/">http://tools.medialab.sciences-po.fr/iwanthue/</a>
-            </ul>
-            <ul>
-                <a href="http://colorbrewer2.org/">http://colorbrewer2.org/</a>
-            </ul>
-            <ul>
-                <a href="http://tristen.ca/hcl-picker/#/hlc/30/0/332E27/F9E5C9">http://tristen.ca/hcl-picker/#/hlc/30/0/332E27/F9E5C9</a>
-            </ul>
-            <ul>
-                <a href="https://github.com/Siddharth11/gradStop.js">https://github.com/Siddharth11/gradStop.js</a>
-            </ul>
-        </ui>        <a href="https://eagereyes.org/basics/rainbow-color-map">https://eagereyes.org/basics/rainbow-color-map</a>
-        <a href="https://vis4.net/blog/posts/mastering-multi-hued-color-scales/">https://vis4.net/blog/posts/mastering-multi-hued-color-scales/</a>
-        <a href="https://gka.github.io/palettes/#colors=feeb65,e4521b,fd342f|steps=64|bez=1|coL=1">https://gka.github.io/palettes/#colors=feeb65,e4521b,fd342f|steps=64|bez=1|coL=1</a>
-        <a href="https://medium.com/graphiq-engineering/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283#.rttsx8n27">https://medium.com/graphiq-engineering/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283#.rttsx8n27</a>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <% include ./partials/nav %>
+  <main class="mdl-layout__content">
+    <div class="data-content">
+      <div class="mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <div id="heatmap"></div>
+        <div id="legend"></div>
+      </div>
+    </div>
+    <div class="mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+      <p>Additional References: </p>
+      Start here ->
+      <ui>
+        <ul>
+          <a href="https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/">https://vis4.net/blog/posts/avoid-equidistant-hsv-colors/</a>
+        </ul>
+        <ul>
+          <a href="http://tools.medialab.sciences-po.fr/iwanthue/">http://tools.medialab.sciences-po.fr/iwanthue/</a>
+        </ul>
+        <ul>
+          <a href="http://colorbrewer2.org/">http://colorbrewer2.org/</a>
+        </ul>
+        <ul>
+          <a href="http://tristen.ca/hcl-picker/#/hlc/30/0/332E27/F9E5C9">http://tristen.ca/hcl-picker/#/hlc/30/0/332E27/F9E5C9</a>
+        </ul>
+        <ul>
+          <a href="https://github.com/Siddharth11/gradStop.js">https://github.com/Siddharth11/gradStop.js</a>
+        </ul>
+      </ui>
+      <a href="https://eagereyes.org/basics/rainbow-color-map">https://eagereyes.org/basics/rainbow-color-map</a>
+      <a href="https://vis4.net/blog/posts/mastering-multi-hued-color-scales/">https://vis4.net/blog/posts/mastering-multi-hued-color-scales/</a>
+      <a href="https://gka.github.io/palettes/#colors=feeb65,e4521b,fd342f|steps=64|bez=1|coL=1">https://gka.github.io/palettes/#colors=feeb65,e4521b,fd342f|steps=64|bez=1|coL=1</a>
+      <a href="https://medium.com/graphiq-engineering/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283#.rttsx8n27">https://medium.com/graphiq-engineering/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283#.rttsx8n27</a>
+
+
     </div>
 
+  </main>
 </div>
-<script src="lib/d3-legend.js"></script>
-<script src="js/heatmap.js">
 
-</script>
-<% include ./partials/footer %>
+
+<script src="lib/d3-legend.js"></script>
+<script src="js/heatmap.js"></script>
+
 </body>

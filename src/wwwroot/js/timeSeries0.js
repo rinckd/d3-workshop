@@ -45,7 +45,7 @@
 
     svg.append('path')
       .attr('d', lineGenerator(json))
-      .attr('stroke', 'green')
+      .attr('stroke', '#3f51b5')
       .attr('stroke-width', 2)
       .attr('fill', 'none');
     svg.append('g')
