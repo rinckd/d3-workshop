@@ -1,122 +1,125 @@
-[
-   {
-      "label":"January",
+{
+  "units": "kW",
+  "data": [
+    {
+      "label":"Jan",
       "values":{
-         "Q1":140.0754,
-         "Q2":201.7292,
-         "Q3":226.02957500000002,
-         "wisker_low":113.9177,
-         "whisker_low":306.4633
+        "Q1":140.1,
+        "Q2":201.7,
+        "Q3":226.0,
+        "whisker_low":113.9,
+        "whisker_high":306.5
       }
-   },
-   {
-      "label":"February",
+    },
+    {
+      "label":"Feb",
       "values":{
-         "Q1":144.4092,
-         "Q2":208.02355,
-         "Q3":233.7169,
-         "wisker_low":118.4579,
-         "whisker_low":277.7775
+        "Q1":144.4,
+        "Q2":208.0,
+        "Q3":233.7,
+        "whisker_low":118.5,
+        "whisker_high":277.8
       }
-   },
-   {
-      "label":"March",
+    },
+    {
+      "label":"Mar",
       "values":{
-         "Q1":135.947925,
-         "Q2":187.69585,
-         "Q3":209.6745,
-         "wisker_low":109.9966,
-         "whisker_low":254.251
+        "Q1":135.9,
+        "Q2":187.7,
+        "Q3":209.7,
+        "whisker_low":109.9,
+        "whisker_high":254.3
       }
-   },
-   {
-      "label":"April",
+    },
+    {
+      "label":"Apr",
       "values":{
-         "Q1":134.86450000000002,
-         "Q2":178.0995,
-         "Q3":202.8642,
-         "wisker_low":111.0284,
-         "whisker_low":251.1554
+        "Q1":134.86,
+        "Q2":178.1,
+        "Q3":202.9,
+        "whisker_low":111.0,
+        "whisker_high":251.2
       }
-   },
-   {
+    },
+    {
       "label":"May",
       "values":{
-         "Q1":123.2044,
-         "Q2":156.8431,
-         "Q3":182.227,
-         "wisker_low":88.94657,
-         "whisker_low":260.0294
+        "Q1":123.2,
+        "Q2":156.8,
+        "Q3":182.2,
+        "whisker_low":88.9,
+        "whisker_high":260.0
       }
-   },
-   {
-      "label":"June",
+    },
+    {
+      "label":"Jun",
       "values":{
-         "Q1":111.4412,
-         "Q2":143.22255,
-         "Q3":168.6064,
-         "wisker_low":75.73873,
-         "whisker_low":261.6804
+        "Q1":111.4,
+        "Q2":143.2,
+        "Q3":168.6,
+        "whisker_low":75.7,
+        "whisker_high":261.7
       }
-   },
-   {
-      "label":"July",
+    },
+    {
+      "label":"Jul",
       "values":{
-         "Q1":106.0239,
-         "Q2":139.9206,
-         "Q3":161.7961,
-         "wisker_low":65.4201,
-         "whisker_low":250.5363
+        "Q1":106.0,
+        "Q2":139.9,
+        "Q3":161.8,
+        "whisker_low":65.4,
+        "whisker_high":250.5
       }
-   },
-   {
-      "label":"August",
+    },
+    {
+      "label":"Aug",
       "values":{
-         "Q1":108.08760000000001,
-         "Q2":155.5017,
-         "Q3":183.10407500000002,
-         "wisker_low":81.72353,
-         "whisker_low":257.1402
+        "Q1":108.1,
+        "Q2":155.5,
+        "Q3":183.1,
+        "whisker_low":81.7,
+        "whisker_high":257.1
       }
-   },
-   {
-      "label":"September",
+    },
+    {
+      "label":"Sep",
       "values":{
-         "Q1":113.86609999999999,
-         "Q2":170.1542,
-         "Q3":197.55010000000002,
-         "wisker_low":85.43824,
-         "whisker_low":254.6637
+        "Q1":113.9,
+        "Q2":170.2,
+        "Q3":197.6,
+        "whisker_low":85.4,
+        "whisker_high":254.7
       }
-   },
-   {
-      "label":"October",
+    },
+    {
+      "label":"Oct",
       "values":{
-         "Q1":123.15280000000001,
-         "Q2":185.8385,
-         "Q3":206.9917,
-         "wisker_low":94.10589,
-         "whisker_low":258.1721
+        "Q1":123.2,
+        "Q2":185.8,
+        "Q3":206.9,
+        "whisker_low":94.1,
+        "whisker_high":258.2
       }
-   },
-   {
-      "label":"November",
+    },
+    {
+      "label":"Nov",
       "values":{
-         "Q1":133.0587,
-         "Q2":188.6245,
-         "Q3":214.3179,
-         "wisker_low":106.901,
-         "whisker_low":266.6333
+        "Q1":133.1,
+        "Q2":188.6,
+        "Q3":214.3,
+        "whisker_low":106.9,
+        "whisker_high":266.6
       }
-   },
-   {
-      "label":"December",
+    },
+    {
+      "label":"Dec",
       "values":{
-         "Q1":145.4927,
-         "Q2":206.6821,
-         "Q3":231.55,
-         "wisker_low":119.6961,
-         "whisker_low":287.2706
+        "Q1":145.5,
+        "Q2":206.7,
+        "Q3":231.6,
+        "whisker_low":119.7,
+        "whisker_high":287.3
       }
-   }
-]
+    }
+  ]
+}
