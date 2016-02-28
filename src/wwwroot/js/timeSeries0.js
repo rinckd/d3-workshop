@@ -10,7 +10,6 @@
     left: 50
   };
 
-
   d3.json('/data/hourly_load_profile.json', function (error, json) {
     if (error) {
       return console.error(error);
