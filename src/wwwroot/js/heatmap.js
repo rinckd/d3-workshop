@@ -1,36 +1,34 @@
 (function () {
   'use strict';
-  d3.json('data/wind_turbine.json', function (error, jsonFile) {
+  d3.json('data/state_of_charge_percent.json', function (error, jsonFile) {
 
     if (error) {
       return console.error(error);
     }
 
+    var svgWidth = 600;
+    var svgHeight = 400;
+    var marginX = 10;
+    var marginY = 10;
     var cellWidth = 1.5;
-    var heatmapWidth = cellWidth * 365;
-    var cellHeight = 7;
-
-    var translateX = 597;
-    var translateY = 217.5;
-    var legendSize = 167;
-    var tickSpacing = legendSize / 8.15;
-    var hourBarHeight = 4;
+    var cellHeight = 10;
 
     var matrix = [];
-    jsonFile.forEach(function(data, it) {
+    jsonFile.data.forEach(function(data, it) {
       //console.log(data.date);
-      var format = d3.time.format('%m/%d/%Y %H:%M');
+      //var format = d3.time.format('%m/%d/%Y %H:%M');
+      var format = d3.time.format('%m-%d-%H');
       var d3Date = format.parse(data.date);
-
       var day = d3.time.dayOfYear(d3Date);
-      var hour = format.parse(data.date).getHours();
+      //var hour = format.parse(data.date).getHours();
+      var hour = data.date.substr(6);
       matrix.push({id: day + '-' + hour, x: day, y: hour, weight: data.value});
     });
     //console.log(matrix);
 
-    var maxValue = d3.max(jsonFile.map(function(data) { return data.value; }));
+    var maxValue = d3.max(jsonFile.data.map(function(data) { return data.value; }));
 
-    var colors = ['rgb(0,0,0)', 'rgb(0, 0, 0)','rgb(34, 39, 90)',
+    var colors = ['rgb(0, 0, 0)','rgb(34, 39, 90)',
       'rgb(51, 45, 135)','rgb(69, 48, 192)', 'rgb(46, 44, 213)',
       'rgb(23, 40, 234)','rgb(0, 35, 255)', 'rgb(0, 72, 255)',
       'rgb(0, 108, 255)', 'rgb(0, 146, 255)', 'rgb(0, 182, 255)',
@@ -49,48 +47,32 @@
 
     var svg = d3.select('#heatmap')
       .append('svg')
-      .attr('width', 800)
-      .attr('height', 400);
+      .attr('width', svgWidth)
+      .attr('height', svgHeight);
     svg.append('g')
-      .attr('transform', 'translate(50,50)')
-      .attr('id', 'adjacencyG')
+      .attr('transform', 'translate(' + marginX + ',' +
+        marginY +')')
       .selectAll('rect')
       .data(matrix)
       .enter()
       .append('rect')
-      .attr('width', 1.5)
-      .attr('height', 7)
+      .attr('width', cellWidth)
+      .attr('height', cellHeight)
       .attr('x', function (d) {return d.x * cellWidth;})
       .attr('y', function (d) {return d.y * cellHeight;})
-      .style('stroke', 'black')
-      .style('stroke-width', 0)
       .style('fill', function (d) { return colorScale(d.weight); })
       .on('mouseover', gridOver);
-
-    svg.append('g')
-      .attr('class', 'legend')
-      .attr('transform', 'translate(780,50)');
 
     function gridOver(d) {
       console.log(d);
     }
 
+    var yAxisSize = cellHeight * 24 - 1;
     var timescale = d3.time
       .scale()
       .nice(d3.time.day)
       .domain([new Date(2011, 0, 2), new Date(2011, 0, 1)])
-      .range([0, legendSize]);
-
-    var test = svg.append('g')
-      .selectAll('rect')
-      .data(colors)
-      .enter()
-      .append('rect')
-      .attr('x', function(d, i) { return 50 + 9*i })
-      .attr('y', 260)
-      .attr('width', 8.5)
-      .attr('height', 10)
-      .attr('fill', function(d) { return d;});
+      .range([0, yAxisSize]);
 
     var hoursAxis = d3.svg
       .axis()
@@ -116,6 +98,10 @@
         }
       });
 
+    var translateX = cellWidth * 365 + marginX;
+    var translateY = cellHeight * 24 + marginY - 0.5;
+    var tickSpacing = yAxisSize / 8.15;
+    var hourBarHeight = 4;
     var hoursg = svg.append('g')
       .classed('dayAxis', true)
       .classed('hours', true)
@@ -143,9 +129,9 @@
         return hourBarHeight;
       });
 
-    var xAxisTranslateX = 50.5;
-    var yAxisTranslateY = 217;
-    var xAxisLength = 547;
+    var xAxisTranslateX = marginX + 0.5;
+    var yAxisTranslateY = cellHeight * 24 + marginY;
+    var xAxisLength = 365 * cellWidth - 0.5;
     var xTimeScale = d3.time
       .scale()
       .domain([new Date(2015, 0, 1), new Date(2015, 11, 31)])

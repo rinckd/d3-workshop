@@ -14,11 +14,11 @@ var navigation = [{
   url:'/timeseries/0',
   text:'Simple Time Series'
 }, {
-  url:'/timeseries/2',
-  text:'Time Series 2'
-}, {
   url:'/timeseries/3',
   text:'NVD3'
+}, {
+  url:'/timeseries/6',
+  text:'Box Plots'
 }, {
   url:'/timeseries/4',
   text:'Hour Legend'

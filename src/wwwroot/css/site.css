@@ -22,6 +22,9 @@ body {
   max-width: 1080px;
 }
 
+#timeSeries {
+  margin-left: 5px;
+}
 .time-series-path {
   fill: rgb(63,81,181);
 }

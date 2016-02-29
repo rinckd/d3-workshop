@@ -27,6 +27,7 @@
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
       .domain([0,250]);
+
     var xAxis = d3.svg.axis()
       .scale(xScale);
 
@@ -43,7 +44,7 @@
       .interpolate('basis'); // ('linear')('cardinal')('monotone');
 
     svg.append('path')
-      .attr('d', lineGenerator(json))
+      .attr('d', lineGenerator(json.data))
       .attr('stroke', '#3f51b5')
       .attr('stroke-width', 2)
       .attr('fill', 'none');
