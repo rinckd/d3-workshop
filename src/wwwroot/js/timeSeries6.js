@@ -27,11 +27,13 @@
       return chart;
     });
 
+    var title = jsonFile.title + ' (' + jsonFile.units + ')';
     svg.append('text')
-      .attr('text-anchor', 'end')
-      .attr('x', svgWidth / 2)
+      .attr('text-anchor', 'middle')
+      .attr('class', 'mdl-card__title-text')
+      .attr('x', 350)
       .attr('y', 350)
-      .text(jsonFile.title);
+      .text(title);
 
   });
 })();

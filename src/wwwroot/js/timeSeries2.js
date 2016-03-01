@@ -51,7 +51,7 @@
     .attr('class', 'context')
     .attr('transform', 'translate(' + margin2.left + ',' + margin2.top + ')');
 
-  d3.json('/data/hourly_load_profile.json', function(error, jsonData) {
+  d3.json('/data/ac_load.json', function(error, jsonData) {
     var data = jsonData.data;
     x.domain(d3.extent(data.map(function(d) { return parseDate(d.date); })));
     y.domain([0, d3.max(data.map(function(d) { return d.value; }))]);

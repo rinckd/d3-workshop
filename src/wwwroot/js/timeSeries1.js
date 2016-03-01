@@ -9,7 +9,7 @@
     left: 50
   };
 
-  d3.json('/data/hourly_load_profile.json', function (error, json) {
+  d3.json('/data/ac_load.json', function (error, json) {
     if (error) {
       return console.error(error);
     }
@@ -20,12 +20,12 @@
       .attr('width', width);
 
     var format = d3.time.format('%m-%d-%H');
-    var minDate = format.parse('01-01-00'); // returns a Date
-    var maxDate = format.parse('01-02-02');
+    var minDate = format.parse('01-01-00');
+    var maxDate = format.parse('01-02-00');
 
     var xScale = d3.time.scale()
-      .domain([minDate, maxDate])    // values between for month of january
-      .range([margins.left, width - margins.right]);   // map these the the chart width = total width minus padding at both sides
+      .domain([minDate, maxDate])
+      .range([margins.left, width - margins.right]);
 
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
@@ -54,6 +54,7 @@
       .attr('stroke', 'green')
       .attr('stroke-width', 2)
       .attr('fill', 'none');
+
     svg.append('g')
       .call(xAxis)
       .attr('class', 'axis')

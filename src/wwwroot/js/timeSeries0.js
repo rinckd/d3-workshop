@@ -10,7 +10,7 @@
     left: 50
   };
 
-  d3.json('/data/hourly_load_profile.json', function (error, json) {
+  d3.json('/data/ac_load.json', function (error, json) {
     if (error) {
       return console.error(error);
     }
@@ -20,20 +20,24 @@
       .attr('height', height)
       .attr('width', width);
 
-    var xScale = d3.scale.linear()
-      .range([margins.left, width - margins.right])
-      .domain([0,23]);
 
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
-      .domain([0,250]);
+      .domain([0, d3.max(json.data.map(function(data) { return data.value; }))]);
 
-    var xAxis = d3.svg.axis()
-      .scale(xScale);
+
 
     var yAxis = d3.svg.axis()
       .scale(yScale)
       .orient('left');
+
+
+    var xScale = d3.scale.linear()
+      .range([margins.left, width - margins.right])
+      .domain([0,23]);
+
+    var xAxis = d3.svg.axis()
+      .scale(xScale);
 
     var lineGenerator = d3.svg.line()
       .x(function(d, iterator) { return xScale(iterator); })
@@ -58,21 +62,13 @@
       .attr('transform', 'translate(' + (margins.left) + ',0)')
       .attr('class', 'axis');
 
-    // now add titles to the axes
-    //svg.append('text')
-    //  .attr('class', 'x label')
-    //  .attr('text-anchor', 'end')
-    //  .attr('x', (margins.left - margins.right + width) / 2)
-    //  .attr('y', height - 6)
-    //  .text('Hour');
-    //
-    //svg.append('text')
-    //  .attr('class', 'y label')
-    //  .attr('text-anchor', 'end')
-    //  .attr('y', 6)
-    //  .attr('x', -((height + margins.top - margins.bottom)/2))
-    //  .attr('dy', '.75em')
-    //  .attr('transform', 'rotate(-90)')
-    //  .text('a');
+    var title = json.title + ' (' + json.units + ')';
+    svg.append('text')
+      .attr('x', 300)
+      .attr('y', 25)
+      .attr('text-anchor', 'middle')
+      .attr('class', 'mdl-card__title-text')
+      .text(title);
+
   });
 })();

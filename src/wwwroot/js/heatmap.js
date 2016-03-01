@@ -160,5 +160,14 @@
       .classed('labeled', true)
       .attr('transform', 'translate(' + xAxisTranslateX + ',' + yAxisTranslateY + ') rotate(0)')
       .call(xAxis);
+
+    var title = jsonFile.title + ' (' + jsonFile.units + ')';
+    svg.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('class', 'mdl-card__title-text')
+      .attr('x', 300)
+      .attr('y', 320)
+      .text(title);
+
   });
 })();
