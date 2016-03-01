@@ -1,42 +1,47 @@
 (function() {
   'use strict';
-  d3.json('/data/ac_load.json', function(error, dataJson) {
+  d3.json('/data/ac_load.json', function(error, json) {
 
-    var height = 500;
-    var minTime = new Date(2016, 0, 1);
-    var maxTime = d3.time.hour.offset(minTime, 24 * 7);
-    var data5 = [{key: dataJson.units, values: []}];
-    dataJson.data.forEach(function(el, i) {
-      var timeIterator = d3.time.hour.offset(minTime, i);
-      data5[0].values.push({x: timeIterator, y: el.value});
+    var displayData = [{key: json.units, values: []}];
+    json.data.forEach(function(el, i) {
+      var format = d3.time.format('%m/%d/%Y %H:%M');
+      var d3Date = format.parse(el.date);
+      displayData[0].values.push({x: d3Date, y: el.value});
     });
+
+    var svg = d3.select('#timeSeries').append('svg')
+      .attr('height', 500);
 
     nv.addGraph(function () {
       var chart = nv.models.lineWithFocusChart();
+
       chart.xAxis
         .tickFormat(function(d) {
           return d3.time.format('%b %-d %-I%p')(new Date(d));
         });
-      chart.xAxis.rotateLabels(-45);
+
       chart.xScale(d3.time.scale());
       chart.yAxis
-        .tickFormat(d3.format(',.2f'));
+        .tickFormat(d3.format(',.1f'));
       chart.x2Axis
         .tickFormat(function(d) {
           return d3.time.format('%b %-d')(new Date(d));
         });
-      chart.y2Axis
-        .tickFormat(d3.format(',.2f'));
       chart.margin({bottom:80});
-      var svg = d3.select('#timeSeries').append('svg')
-        .attr('height', height);
+
+
+      var minTime = displayData[0].values[0].x;
+      var maxTime = d3.time.hour.offset(minTime, 24 * 7);
       chart.brushExtent([minTime, maxTime]);
 
-      svg.datum(data5)
+      chart.xAxis.rotateLabels(-45);
+
+
+      svg.datum(displayData)
         .transition().duration(500)
         .call(chart);
       nv.utils.windowResize(chart.update);
-      var title = dataJson.title + ' (' + dataJson.units + ')';
+      var title = json.title + ' (' + json.units + ')';
       svg.append('text')
         .attr('x', 300)
         .attr('y', 25)
