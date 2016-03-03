@@ -4,11 +4,11 @@
   var dispatcher = d3.dispatch('jsonLoad');
 
   d3.json('data/alaska_sun.json', function (error, jsonFile) {
-    d3.json('data/color_ametrine.json', function(error, jsonColorPalette) {
+    d3.json('data/color_colorbrewer_yellow_or_red.json', function(error, jsonColorPalette) {
       if (error) {
         return console.error(error);
       }
-
+      var legendColorWidth = 40.5;
       var svgWidth = 600;
       var svgHeight = 310;
       var marginX = 10;
@@ -163,14 +163,14 @@
         .append('svg')
         .attr('width', 600)
         .attr('height', 50);
-      var legendSize = jsonColorPalette.colors.length * 1.5;
+      var legendSize = jsonColorPalette.colors.length * legendColorWidth;
       legendSVG.selectAll('rect')
         .data(jsonColorPalette.colors)
         .enter()
         .append('rect')
-        .attr('x', function(d,i) { return 120 + 1.5*i; })
+        .attr('x', function(d,i) { return 120 + legendColorWidth * i; })
         .attr('y', 20)
-        .attr('width', 2)
+        .attr('width', legendColorWidth)
         .attr('height', 10)
         .attr('fill', function(d) { return d;});
 
@@ -182,6 +182,7 @@
         .axis()
         .scale(legendScale)
         .orient('bottom')
+        .tickValues([0, maxValue])
         .tickSize(12);
 
       var legendAxisg = legendSVG.append('g')
@@ -191,7 +192,7 @@
 
       legendSVG.append("text")
         .attr("text-anchor", "middle")
-        .attr("transform", "translate(" + ((240 + legendSize)/2) +","+ 15 +")")  // centre below axis
+        .attr("transform", "translate(" + ((240 + legendSize)/2) +","+ 15 +")")
         .text(jsonFile.units);
 
 

@@ -1,5 +1,7 @@
 {
   "legend": "Isolum",
+  "url": "https://github.com/ashao/matlab/blob/master/external/isolum.m",
+  "theoretical_paper_url": "https://www.osapublishing.org/oe/abstract.cfm?uri=oe-21-8-9862",
   "colors":
   [
     "rgb(81, 171, 221)",
