@@ -1,45 +1,36 @@
 (function () {
   'use strict';
-  d3.json('data/solar_output.json', function (error, jsonFile) {
-    d3.json('data/color_morgenstemning.json', function(error, jsonColorPalette) {
+
+  var dispatcher = d3.dispatch('jsonLoad');
+
+  d3.json('data/alaska_sun.json', function (error, jsonFile) {
+    d3.json('data/color_ametrine.json', function(error, jsonColorPalette) {
       if (error) {
         return console.error(error);
       }
 
       var svgWidth = 600;
-      var svgHeight = 340;
+      var svgHeight = 310;
       var marginX = 10;
-      var marginY = 10;
+      var marginY = 30;
       var cellWidth = 1.5;
       var cellHeight = 10;
 
       var matrix = [];
       jsonFile.data.forEach(function(data, it) {
         //console.log(data.date);
-        //var format = d3.time.format('%m/%d/%Y %H:%M');
-        var format = d3.time.format('%m-%d-%H');
+        var format = d3.time.format('%m/%d/%Y %H:%M');
+        //var format = d3.time.format('%m-%d-%H');
         var d3Date = format.parse(data.date);
         var day = d3.time.dayOfYear(d3Date);
         //var hour = format.parse(data.date).getHours();
-        var hour = data.date.substr(6);
+        var hour = data.date.substr(11, 2);
         matrix.push({id: day + '-' + hour, x: day, y: hour, weight: data.value});
       });
       //console.log(matrix);
 
       var maxValue = d3.max(jsonFile.data.map(function(data) { return data.value; }));
 
-      var colorsOld = ['rgb(0, 0, 0)','rgb(34, 39, 90)',
-        'rgb(51, 45, 135)','rgb(69, 48, 192)', 'rgb(46, 44, 213)',
-        'rgb(23, 40, 234)','rgb(0, 35, 255)', 'rgb(0, 72, 255)',
-        'rgb(0, 108, 255)', 'rgb(0, 146, 255)', 'rgb(0, 182, 255)',
-        'rgb(0, 218, 250)', 'rgb(0, 245, 245)', 'rgb(6, 244, 220)',
-        'rgb(12,232,195)', 'rgb(18,221,165)', 'rgb(23,210,135)',
-        'rgb(29,198,105)', 'rgb(35,187,75)', 'rgb(69,182,58)', 'rgb(104,186,44)',
-        'rgb(138,200, 25)', 'rgb(167,214,19)', 'rgb(197,228,13)', 'rgb(226,241,6)',
-        'rgb(255,255,0)', 'rgb(255,241,0)', 'rgb(255,227,0)', 'rgb(255,213,0)',
-        'rgb(255,199,0)', 'rgb(255,186,0)', 'rgb(255,172,0)', 'rgb(255,159, 0)',
-        'rgb(255,145,0)', 'rgb(255,134,0)', 'rgb(255,122,0)', 'rgb(255,103,0)',
-        'rgb(255,84,0)'];
       //var colorScale = d3.scale.quantize().range(colorbrewer.YlOrRd[8]).domain([0, maxValue]);
       var colorScale = d3.scale.quantize()
         .range(jsonColorPalette.colors)
@@ -161,26 +152,49 @@
         .attr('transform', 'translate(' + xAxisTranslateX + ',' + yAxisTranslateY + ') rotate(0)')
         .call(xAxis);
 
-      var title = jsonFile.title + ' (' + jsonFile.units + ')';
+      var title = jsonFile.title;
       svg.append('text')
         .attr('text-anchor', 'middle')
         .attr('class', 'mdl-card__title-text')
         .attr('x', 300)
-        .attr('y', 320)
+        .attr('y', 20)
         .text(title);
       var legendSVG = d3.select('#legend')
         .append('svg')
         .attr('width', 600)
-        .attr('height', 10);
+        .attr('height', 50);
+      var legendSize = jsonColorPalette.colors.length * 1.5;
       legendSVG.selectAll('rect')
         .data(jsonColorPalette.colors)
         .enter()
         .append('rect')
-        .attr('x', function(d,i) { return 30 + 2*i; })
-        .attr('y', 0)
+        .attr('x', function(d,i) { return 120 + 1.5*i; })
+        .attr('y', 20)
         .attr('width', 2)
         .attr('height', 10)
         .attr('fill', function(d) { return d;});
+
+      var legendScale = d3.scale.linear()
+        .domain([0, maxValue])
+        .range([0, legendSize]);
+
+      var legendAxis = d3.svg
+        .axis()
+        .scale(legendScale)
+        .orient('bottom')
+        .tickSize(12);
+
+      var legendAxisg = legendSVG.append('g')
+        .attr('transform', 'translate(' + 120 + ',' + 20 + ') rotate(0)')
+        .attr('class', 'axis')
+        .call(legendAxis);
+
+      legendSVG.append("text")
+        .attr("text-anchor", "middle")
+        .attr("transform", "translate(" + ((240 + legendSize)/2) +","+ 15 +")")  // centre below axis
+        .text(jsonFile.units);
+
+
     });
   });
 })();
