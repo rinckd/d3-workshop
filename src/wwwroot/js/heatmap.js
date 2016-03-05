@@ -3,12 +3,12 @@
 
   var dispatcher = d3.dispatch('jsonLoad');
 
-  d3.json('data/alaska_sun.json', function (error, jsonFile) {
-    d3.json('data/color_colorbrewer_yellow_or_red.json', function(error, jsonColorPalette) {
+  d3.json('data/battery.json', function (error, jsonFile) {
+    d3.json('data/color_morgenstemning_truncated.json', function(error, jsonColorPalette) {
       if (error) {
         return console.error(error);
       }
-      var legendColorWidth = 40.5;
+      var legendColorWidth = 1.5;
       var svgWidth = 600;
       var svgHeight = 310;
       var marginX = 10;
@@ -159,6 +159,7 @@
         .attr('x', 300)
         .attr('y', 20)
         .text(title);
+
       var legendSVG = d3.select('#legend')
         .append('svg')
         .attr('width', 600)
