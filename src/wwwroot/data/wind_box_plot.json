@@ -1,1 +1,126 @@
-[{"label":"January","values":{"Q1":4.2970820000000005,"Q2":11.41166,"Q3":19.967492500000002,"whisker_low":0.4516664,"whisker_high":41.38498}},{"label":"February","values":{"Q1":3.67458125,"Q2":9.7699955,"Q3":17.6812425,"whisker_low":0.6549997,"whisker_high":36.32165}},{"label":"March","values":{"Q1":2.5158325,"Q2":4.7974975,"Q3":12.633325,"whisker_low":0.4999998,"whisker_high":39.64331}},{"label":"April","values":{"Q1":3.740415,"Q2":6.8449969999999993,"Q3":15.2737425,"whisker_low":0.4683331,"whisker_high":46.22498}},{"label":"May","values":{"Q1":3.64416475,"Q2":6.3433305,"Q3":10.644165000000001,"whisker_low":0.4533331,"whisker_high":35.51165}},{"label":"June","values":{"Q1":3.80749825,"Q2":6.07333,"Q3":8.70374575,"whisker_low":0.4116665,"whisker_high":26.29499}},{"label":"July","values":{"Q1":3.234165,"Q2":5.3524975,"Q3":7.7024965,"whisker_low":0.568333,"whisker_high":27.28665}},{"label":"August","values":{"Q1":2.06124875,"Q2":3.6833315,"Q3":5.6470807500000006,"whisker_low":0.4816664,"whisker_high":15.67666}},{"label":"September","values":{"Q1":2.6191655,"Q2":4.8691645,"Q3":8.93124575,"whisker_low":0.4916665,"whisker_high":37.51999}},{"label":"October","values":{"Q1":2.4579157499999997,"Q2":4.381665,"Q3":8.787496,"whisker_low":0.4983331,"whisker_high":34.11165}},{"label":"November","values":{"Q1":2.41124925,"Q2":5.6574975,"Q3":12.61791,"whisker_low":0.5649998,"whisker_high":40.72498}},{"label":"December","values":{"Q1":2.29458225,"Q2":4.3458315,"Q3":13.495825,"whisker_low":0.5983331,"whisker_high":46.47165}}]
+{
+  "title": "Wind Turbine Power Outut. Yarmouth, Alaska",
+  "units": "kW",
+  "data": [
+    {
+      "label": "January",
+      "values": {
+        "Q1": 4.2970820000000005,
+        "Q2": 11.41166,
+        "Q3": 19.967492500000002,
+        "whisker_low": 0.4516664,
+        "whisker_high": 41.38498
+      }
+    },
+    {
+      "label": "February",
+      "values": {
+        "Q1": 3.67458125,
+        "Q2": 9.7699955,
+        "Q3": 17.6812425,
+        "whisker_low": 0.6549997,
+        "whisker_high": 36.32165
+      }
+    },
+    {
+      "label": "March",
+      "values": {
+        "Q1": 2.5158325,
+        "Q2": 4.7974975,
+        "Q3": 12.633325,
+        "whisker_low": 0.4999998,
+        "whisker_high": 39.64331
+      }
+    },
+    {
+      "label": "April",
+      "values": {
+        "Q1": 3.740415,
+        "Q2": 6.8449969999999993,
+        "Q3": 15.2737425,
+        "whisker_low": 0.4683331,
+        "whisker_high": 46.22498
+      }
+    },
+    {
+      "label": "May",
+      "values": {
+        "Q1": 3.64416475,
+        "Q2": 6.3433305,
+        "Q3": 10.644165000000001,
+        "whisker_low": 0.4533331,
+        "whisker_high": 35.51165
+      }
+    },
+    {
+      "label": "June",
+      "values": {
+        "Q1": 3.80749825,
+        "Q2": 6.07333,
+        "Q3": 8.70374575,
+        "whisker_low": 0.4116665,
+        "whisker_high": 26.29499
+      }
+    },
+    {
+      "label": "July",
+      "values": {
+        "Q1": 3.234165,
+        "Q2": 5.3524975,
+        "Q3": 7.7024965,
+        "whisker_low": 0.568333,
+        "whisker_high": 27.28665
+      }
+    },
+    {
+      "label": "August",
+      "values": {
+        "Q1": 2.06124875,
+        "Q2": 3.6833315,
+        "Q3": 5.6470807500000006,
+        "whisker_low": 0.4816664,
+        "whisker_high": 15.67666
+      }
+    },
+    {
+      "label": "September",
+      "values": {
+        "Q1": 2.6191655,
+        "Q2": 4.8691645,
+        "Q3": 8.93124575,
+        "whisker_low": 0.4916665,
+        "whisker_high": 37.51999
+      }
+    },
+    {
+      "label": "October",
+      "values": {
+        "Q1": 2.4579157499999997,
+        "Q2": 4.381665,
+        "Q3": 8.787496,
+        "whisker_low": 0.4983331,
+        "whisker_high": 34.11165
+      }
+    },
+    {
+      "label": "November",
+      "values": {
+        "Q1": 2.41124925,
+        "Q2": 5.6574975,
+        "Q3": 12.61791,
+        "whisker_low": 0.5649998,
+        "whisker_high": 40.72498
+      }
+    },
+    {
+      "label": "December",
+      "values": {
+        "Q1": 2.29458225,
+        "Q2": 4.3458315,
+        "Q3": 13.495825,
+        "whisker_low": 0.5983331,
+        "whisker_high": 46.47165
+      }
+    }
+  ]
+}
