@@ -1,4 +1,5 @@
 var express = require('express');
+var glob = require('glob');
 
 var app = express();
 var port = 8080;
@@ -43,6 +44,19 @@ app.get('/scratchpad', function(req, res) {
 });
 app.get('/scratchpad/:step', function(req, res) {
   scratchPad(req, res, 'scratchpad');
+});
+
+app.get('/dataset/', function(req, res) {
+  var dropDownMenu = [];
+  glob('wwwroot/data/timeseries/*.*', function (er, files) {
+    files.forEach(function(element, it) {
+      var prettyName = element.replace('wwwroot/data/timeseries/', '');
+      prettyName = prettyName.replace('.json', '');
+      var dropDownElement = {key: prettyName, value: element};
+      dropDownMenu.push(dropDownElement);
+    });
+    res.json(dropDownMenu);
+  });
 });
 
 function scratchPad(req, res, type) {
