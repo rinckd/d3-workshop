@@ -52,6 +52,8 @@ app.get('/dataset/', function(req, res) {
     files.forEach(function(element, it) {
       var prettyName = element.replace('wwwroot/data/timeseries/', '');
       prettyName = prettyName.replace('.json', '');
+      // wwwroot is a static folder
+      element = element.replace('wwwroot/', '');
       var dropDownElement = {key: prettyName, value: element};
       dropDownMenu.push(dropDownElement);
     });

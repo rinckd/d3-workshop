@@ -1,23 +1,68 @@
 (function () {
   'use strict';
 
-  var dispatcher = d3.dispatch('jsonLoad');
+  var svgWidth = 600;
+  var svgHeight = 310;
+  var legendHeight = 50;
+  var svg = d3.select('#heatmap')
+    .append('svg')
+    .attr('width', svgWidth)
+    .attr('height', svgHeight);
+  var legendSVG = d3.select('#legend')
+    .append('svg')
+    .attr('width', svgWidth)
+    .attr('height', legendHeight);
+  var url = '';
 
-  d3.json('data/battery.json', function (error, jsonFile) {
-    d3.json('data/color_morgenstemning_truncated.json', function(error, jsonColorPalette) {
-      if (error) {
-        return console.error(error);
-      }
+  d3.json('/dataset', function(error, jsonDataSets) {
+    var dropDown = d3.select("#heatmap-selection")
+      .append("select")
+      .attr('class', 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label');
+    var optionList = dropDown.selectAll("option")
+      .data(jsonDataSets)
+      .enter()
+      .append("option")
+      .attr("value",function(d) { return d.value; })
+      .text(function(d) { return d.key; });
+    if (jsonDataSets.length > 0) {
+      url = jsonDataSets[0].value;
+      d3.json(url, callback);
+    }
+  });
+
+  var alertChange = function() {
+    var selectedValue = d3.event.target.value;
+    //var selectedIndex = d3.event.target.selectedIndex;
+    url = selectedValue;
+    d3.select('#heatmap')
+      .select('svg').remove();
+    svg = d3.select('#heatmap')
+      .append('svg')
+      .attr('width', svgWidth)
+      .attr('height', svgHeight);
+    d3.select('#legend')
+      .select('svg').remove();
+    legendSVG = d3.select('#legend')
+      .append('svg')
+      .attr('width', svgWidth)
+      .attr('height', legendHeight);
+    d3.json(url, callback);
+  };
+  d3.select("#heatmap-selection").on("change", alertChange);
+
+
+  var callback = function (error, jsonFile) {
+    if (error) {
+      return console.error(error);
+    }
+    d3.json('data/colors/morgenstemning_truncated.json', function(error, jsonColorPalette) {
       var legendColorWidth = 1.5;
-      var svgWidth = 600;
-      var svgHeight = 310;
       var marginX = 10;
       var marginY = 30;
       var cellWidth = 1.5;
       var cellHeight = 10;
-
       var matrix = [];
-      jsonFile.data.forEach(function(data, it) {
+      jsonFile.data.forEach(function (data, it) {
         //console.log(data.date);
         var format = d3.time.format('%m/%d/%Y %H:%M');
         //var format = d3.time.format('%m-%d-%H');
@@ -28,30 +73,31 @@
         matrix.push({id: day + '-' + hour, x: day, y: hour, weight: data.value});
       });
       //console.log(matrix);
-
-      var maxValue = d3.max(jsonFile.data.map(function(data) { return data.value; }));
-
-      //var colorScale = d3.scale.quantize().range(colorbrewer.YlOrRd[8]).domain([0, maxValue]);
+      var maxValue = d3.max(jsonFile.data.map(function (data) {
+        return data.value;
+      }));
       var colorScale = d3.scale.quantize()
         .range(jsonColorPalette.colors)
         .domain([0, maxValue]);
 
-      var svg = d3.select('#heatmap')
-        .append('svg')
-        .attr('width', svgWidth)
-        .attr('height', svgHeight);
       svg.append('g')
         .attr('transform', 'translate(' + marginX + ',' +
-          marginY +')')
+          marginY + ')')
         .selectAll('rect')
         .data(matrix)
         .enter()
         .append('rect')
         .attr('width', cellWidth)
         .attr('height', cellHeight)
-        .attr('x', function (d) {return d.x * cellWidth;})
-        .attr('y', function (d) {return d.y * cellHeight;})
-        .style('fill', function (d) { return colorScale(d.weight); })
+        .attr('x', function (d) {
+          return d.x * cellWidth;
+        })
+        .attr('y', function (d) {
+          return d.y * cellHeight;
+        })
+        .style('fill', function (d) {
+          return colorScale(d.weight);
+        })
         .on('mouseover', gridOver);
 
       function gridOver(d) {
@@ -137,8 +183,7 @@
         .tickSize(12, 20)
         .tickFormat(function (d) {
           var month = d.getMonth();
-          if (month === 0)
-          {
+          if (month === 0) {
             return null;
           }
           var formatDate = d3.time.format('%b');
@@ -160,20 +205,21 @@
         .attr('y', 20)
         .text(title);
 
-      var legendSVG = d3.select('#legend')
-        .append('svg')
-        .attr('width', 600)
-        .attr('height', 50);
+
       var legendSize = jsonColorPalette.colors.length * legendColorWidth;
       legendSVG.selectAll('rect')
         .data(jsonColorPalette.colors)
         .enter()
         .append('rect')
-        .attr('x', function(d,i) { return 120 + legendColorWidth * i; })
+        .attr('x', function (d, i) {
+          return 30 + legendColorWidth * i;
+        })
         .attr('y', 20)
         .attr('width', legendColorWidth)
         .attr('height', 10)
-        .attr('fill', function(d) { return d;});
+        .attr('fill', function (d) {
+          return d;
+        });
 
       var legendScale = d3.scale.linear()
         .domain([0, maxValue])
@@ -187,16 +233,14 @@
         .tickSize(12);
 
       var legendAxisg = legendSVG.append('g')
-        .attr('transform', 'translate(' + 120 + ',' + 20 + ') rotate(0)')
+        .attr('transform', 'translate(' + 30 + ',' + 20 + ') rotate(0)')
         .attr('class', 'axis')
         .call(legendAxis);
 
       legendSVG.append("text")
         .attr("text-anchor", "middle")
-        .attr("transform", "translate(" + ((240 + legendSize)/2) +","+ 15 +")")
+        .attr("transform", "translate(" + (30 + (legendSize / 2)) + "," + 15 + ")")
         .text(jsonFile.units);
-
-
     });
-  });
+  };
 })();
