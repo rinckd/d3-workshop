@@ -42,8 +42,12 @@ app.get('/scratchpad', function(req, res) {
   req.params.step = 0;
   scratchPad(req, res, 'scratchpad');
 });
+
 app.get('/scratchpad/:step', function(req, res) {
-  scratchPad(req, res, 'scratchpad');
+  res.locals.scripts = '/js/scratchpad' + req.params.step + '.js';
+  res.render('scratchpad', {
+    nav: navigation
+  });
 });
 
 app.get('/dataset/', function(req, res) {

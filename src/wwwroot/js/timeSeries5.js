@@ -2,7 +2,7 @@
   'use strict';
   var svgWidth = 700;
   var svgHeight = 800;
-  var svg = d3.select('#timeSeries').append('svg').attr('width', svgWidth).attr('height', svgHeight);
+  var svg = d3.select('#time-series').append('svg').attr('width', svgWidth).attr('height', svgHeight);
 
   var xAxisTranslateX = 30.5;
   var yAxisTranslateY = 400.5;

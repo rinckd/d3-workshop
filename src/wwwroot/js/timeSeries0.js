@@ -15,7 +15,7 @@
       return console.error(error);
     }
 
-    var svg = d3.select('#timeSeries')
+    var svg = d3.select('#time-series')
       .append('svg')
       .attr('height', height)
       .attr('width', width);

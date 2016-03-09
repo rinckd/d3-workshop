@@ -7,7 +7,7 @@
     var graphUnits = jsonFile.units;
     var svgWidth = 700;
     var svgHeight = 400;
-    var svg = d3.select('#timeSeries')
+    var svg = d3.select('#time-series')
       .append('svg')
       .attr('width', svgWidth)
       .attr('height', svgHeight);

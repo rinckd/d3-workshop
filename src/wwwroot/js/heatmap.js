@@ -55,7 +55,7 @@
     if (error) {
       return console.error(error);
     }
-    d3.json('data/colors/morgenstemning_truncated.json', function(error, jsonColorPalette) {
+    d3.json('data/colors/magma.json', function(error, jsonColorPalette) {
       var legendColorWidth = 1.5;
       var marginX = 10;
       var marginY = 30;

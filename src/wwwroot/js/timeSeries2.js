@@ -33,7 +33,7 @@
     .y0(height2)
     .y1(function(d) { return y2(d.value); });
 
-  var svg = d3.select('#timeSeries').append('svg')
+  var svg = d3.select('#time-series').append('svg')
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom + 100);
 

@@ -9,8 +9,8 @@
     bottom: 40,
     left: 50
   };
-  d3.json('/data/ac_load.json', function(error, json) {
-    var svg = d3.select('#timeSeries')
+  d3.json('/data/timeseries/ac_load.json', function(error, json) {
+    var svg = d3.select('#time-series')
       .append('svg')
       .attr('height', height)
       .attr('width', width);
@@ -19,9 +19,12 @@
     //  .range([height - margins.bottom, margins.top])
     //  .domain([0, d3.max(json.data.map(function(data) { return data.value; }))]);
 
+    //var yScale = d3.scale.linear()
+    //  .range([height - margins.bottom, margins.top])
+    //  .domain([0, d3.max(json.data, function(d) { return d.value; })]);
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
-      .domain([0, d3.max(json.data, function(d) { return d.value; })]);
+      .domain(d3.extent(json.data, function(d) { return d.value; }));
 
 
     var yAxis = d3.svg.axis()
