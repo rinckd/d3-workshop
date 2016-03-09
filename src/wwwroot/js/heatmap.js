@@ -62,6 +62,7 @@
       var cellWidth = 1.5;
       var cellHeight = 10;
       var matrix = [];
+
       jsonFile.data.forEach(function (data, it) {
         //console.log(data.date);
         var format = d3.time.format('%m/%d/%Y %H:%M');
@@ -229,7 +230,6 @@
         .axis()
         .scale(legendScale)
         .orient('bottom')
-        .tickValues([0, maxValue])
         .tickSize(12);
 
       var legendAxisg = legendSVG.append('g')
