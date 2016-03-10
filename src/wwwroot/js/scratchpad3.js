@@ -1,8 +1,6 @@
 (function () {
-  'use strict';
-  const width = 700;
-  const height = 800;
-
+  var width = 700;
+  var height = 800;
   var svg = d3.select('#time-series')
     .append('svg')
     .attr('width', width)
