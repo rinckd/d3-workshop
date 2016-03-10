@@ -10,5 +10,5 @@
   svg.append('text')
     .attr('x', 10)
     .attr('y', 20)
-    .text('hello world');
+    .text('hello world!');
 }());
