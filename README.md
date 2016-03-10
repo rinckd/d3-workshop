@@ -15,7 +15,18 @@ You'll need:
 # Using the D3 Sketchpad
 The relevant javascript you will want to look at to follow along is located in: src/wwwroot/js/
 
-It is designed for rapid prototyping. For example you can add a timeseries5.js to src/wwwroot/js and use d3. Your script will be immediately available at the route: http://localhost:3000/timeseries/5. 
+It is designed for rapid prototyping. For example you can add a scratchpad20.js to src/wwwroot/js and use d3.js and Material Design Light. Your script will be immediately available at the route: http://localhost:3000/scratchpad/20. 
+
+![How To](https://github.com/rinckd/d3-workshop/blob/master/readme.gif)
+
+
+You'll want to select the 'time-series' ID in d3. That will give you a nice fresh div with lots of space to design in d3!
+
+`var svg = d3.select('#time-series')
+      .append('svg') `
+
+
+
 
 ## Presentation Table of Contents:
 - SVG Introduction. Dynamically update svg elements and see how they react.
