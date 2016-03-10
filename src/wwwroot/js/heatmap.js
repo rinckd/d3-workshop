@@ -88,7 +88,7 @@
         .data(matrix)
         .enter()
         .append('rect')
-        .attr('width', cellWidth)
+        .attr('width', cellWidth + 1)
         .attr('height', cellHeight)
         .attr('x', function (d) {
           return d.x * cellWidth;
@@ -216,8 +216,9 @@
           return 30 + legendColorWidth * i;
         })
         .attr('y', 20)
-        .attr('width', legendColorWidth)
+        .attr('width', legendColorWidth + 1)
         .attr('height', 10)
+        .attr('stroke', 'none')
         .attr('fill', function (d) {
           return d;
         });
