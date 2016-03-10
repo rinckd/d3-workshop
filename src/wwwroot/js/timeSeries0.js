@@ -10,12 +10,12 @@
     left: 50
   };
 
-  d3.json('/data/timeseries/boulder_sun.json', function (error, json) {
+  d3.json('/data/timeseries/ac_load.json', function (error, json) {
     if (error) {
       return console.error(error);
     }
 
-    var daySvg = d3.select('#time-series')
+    var svg = d3.select('#time-series')
       .append('svg')
       .attr('height', height)
       .attr('width', width);
@@ -23,7 +23,7 @@
 
     var yScale = d3.scale.linear()
       .range([height - margins.bottom, margins.top])
-      .domain([0, 8]);
+      .domain([0, 300]);
 
 
 
@@ -47,23 +47,23 @@
       })
       .interpolate('basis'); // ('linear')('cardinal')('monotone');
 
-    daySvg.append('path')
+    svg.append('path')
       .attr('d', lineGenerator(json.data))
       .attr('stroke', '#3f51b5')
       .attr('stroke-width', 2)
       .attr('fill', 'none');
-    daySvg.append('g')
+    svg.append('g')
       .call(xAxis)
       .attr('class', 'axis')
       .attr('transform', 'translate(0, ' + (height - margins.bottom) + ')');
 
-    daySvg.append('g')
+    svg.append('g')
       .call(yAxis)
       .attr('transform', 'translate(' + (margins.left) + ',0)')
       .attr('class', 'axis');
 
     var title = json.title + ' (' + json.units + ')';
-    daySvg.append('text')
+    svg.append('text')
       .attr('x', 300)
       .attr('y', 25)
       .attr('text-anchor', 'middle')
