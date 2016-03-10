@@ -1,13 +1,33 @@
 (function() {
-
   var pointData = [
-    [205, 110],
-    [125, 160],
-    [125, 250],
-    [200, 290],
-    [275, 250],
-    [275, 160],
-    [195, 110]
+    {
+      'x':205,
+      'y':110
+    },
+    {
+      'x':125,
+      'y':160
+    },
+    {
+      'x':125,
+      'y':250
+    },
+    {
+      'x':200,
+      'y':290
+    },
+    {
+      'x':275,
+      'y':250
+    },
+    {
+      'x':275,
+      'y':160
+    },
+    {
+      'x':195,
+      'y':110
+    }
   ];
   var svg = d3.select('#time-series')
     .append('svg')
@@ -16,16 +36,17 @@
 
   var line = d3.svg.line()
     .interpolate('linear')
-    .x(function(d) { return d[0];})
-    .y(function(d) { return d[1];});
+    .x(function(d) { return d.x;})
+    .y(function(d) { return d.y;});
 
   var path = svg.append('path')
     .attr('d', line(pointData))
-    .attr('stroke', 'rgb(47,54,169')
     .attr('stroke-width', 22)
+    .attr('stroke', 'rgb(47,54,169')
     .attr('fill', 'none');
 
   var totalLength = path.node().getTotalLength();
+
   function forwards() {
     path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
       .attr('stroke-dashoffset', totalLength)
@@ -45,5 +66,4 @@
       .each('end', forwards);
   }
   forwards();
-
 }());
