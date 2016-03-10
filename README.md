@@ -22,23 +22,26 @@ It is designed for rapid prototyping. For example you can add a scratchpad20.js 
 
 You'll want to select the 'time-series' ID in d3. That will give you a nice fresh div with lots of space to design in d3!
 
-`var svg = d3.select('#time-series')
-      .append('svg') `
-
+`var svg = d3.select('#time-series').append('svg') `
 
 
 
 ## Presentation Table of Contents:
 - SVG Introduction. Dynamically update svg elements and see how they react.
 - Generative Art. Tree recursion.
+- Generators.
+- Components. 
 - Heat Map. ColorBrewer.
+
 
 ##TODO:
 d3.js and ES6
 Angular 2
 
 
-##Presentation Slides: Presentation_Slides.pdf
+##Presentation Slides: 
+Are here:
+[https://github.com/rinckd/d3-workshop/blob/master/Presentation_Slides.pdf](https://github.com/rinckd/d3-workshop/blob/master/Presentation_Slides.pdf)
 
 
 ~Still a work in progress! Stay Tuned
