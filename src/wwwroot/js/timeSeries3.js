@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  d3.json('/data/ac_load.json', function(error, json) {
+  d3.json('/data/timeseries/ac_load.json', function(error, json) {
     var displayData = [{key: json.units, values: []}];
     json.data.forEach(function(el, i) {
       var format = d3.time.format('%m/%d/%Y %H:%M');

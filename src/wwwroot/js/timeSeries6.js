@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  d3.json('/data/ac_load_boxplot.json', function (error, jsonFile) {
+  d3.json('/data/boxplots/ac_load_boxplot.json', function (error, jsonFile) {
     if (error) {
       return console.error(error);
     }
