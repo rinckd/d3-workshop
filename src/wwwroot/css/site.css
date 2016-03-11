@@ -2,6 +2,12 @@ body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
+.triangle {
+  stroke-width: 22;
+  stroke: rgb(47,54,169);
+  fill: none;
+}
+
 .data-drawer {
   border: none;
   background-color: #000;

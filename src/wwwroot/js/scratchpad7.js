@@ -6,9 +6,6 @@
 
   var path = svg.append('path')
     .attr('d', 'M 100 100 L300 100 L200 300z')
-    .attr('stroke-width', 22)
-    .attr('fill', 'none')
-    .attr('stroke', 'steelblue');
-
+    .attr('class', 'triangle');
 
 }());
