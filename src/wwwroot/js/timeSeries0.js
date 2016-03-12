@@ -1,14 +1,14 @@
 (function() {
   'use strict';
 
-  var width = 600;
-  var height = 400;
-  var margins = {
+  var margin = {
     top: 40,
-    right: 0,
+    right: 10,
     bottom: 40,
-    left: 50
+    left: 40
   };
+  var width = 600 - margin.left - margin.right;
+  var height = 400 - margin.top - margin.bottom;
 
   d3.json('/data/timeseries/ac_load.json', function (error, json) {
     if (error) {
@@ -17,23 +17,21 @@
 
     var svg = d3.select('#time-series')
       .append('svg')
-      .attr('height', height)
-      .attr('width', width);
-
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     var yScale = d3.scale.linear()
-      .range([height - margins.bottom, margins.top])
+      .range([height, 0])
       .domain([0, 300]);
-
-
 
     var yAxis = d3.svg.axis()
       .scale(yScale)
       .orient('left');
 
-
     var xScale = d3.scale.linear()
-      .range([margins.left, width - margins.right])
+      .range([0, width])
       .domain([0,23]);
 
     var xAxis = d3.svg.axis()
@@ -55,20 +53,18 @@
     svg.append('g')
       .call(xAxis)
       .attr('class', 'axis')
-      .attr('transform', 'translate(0, ' + (height - margins.bottom) + ')');
+      .attr('transform', 'translate(0, ' + height  + ')');
 
     svg.append('g')
       .call(yAxis)
-      .attr('transform', 'translate(' + (margins.left) + ',0)')
       .attr('class', 'axis');
 
     var title = json.title + ' (' + json.units + ')';
     svg.append('text')
-      .attr('x', 300)
-      .attr('y', 25)
+      .attr('x', (width + margin.left + margin.right)/2 )
+      .attr('y', 0)
       .attr('text-anchor', 'middle')
-      .attr('class', 'mdl-card__title-text')
+      .attr('class', 'mdl-typography--headline')
       .text(title);
-
   });
 })();
