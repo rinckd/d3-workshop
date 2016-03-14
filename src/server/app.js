@@ -12,6 +12,10 @@ var navigation = [{
   url:'/',
   text:'Intro to SVG'
 }, {
+  url:'/scratchpad/6',
+  text:'Simple Animations'
+},
+{
   url:'/timeseries/0',
   text:'Simple Time Series'
 }, {

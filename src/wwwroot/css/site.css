@@ -1,7 +1,18 @@
 body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
+.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  stroke-width: 1;
+}
 
+.line {
+  stroke-width: 2;
+  stroke: rgb(47,54,169);
+  fill: none;
+}
 .triangle {
   stroke-width: 22;
   stroke: rgb(47,54,169);
@@ -52,12 +63,7 @@ body {
   opacity:0.8;}
 
 /*Time Series Axis*/
-.axis path, .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-  stroke-width: 1;
-}
+
 
 /*Heat map axis*/
 .dayAxis path, .dayAxis line {
