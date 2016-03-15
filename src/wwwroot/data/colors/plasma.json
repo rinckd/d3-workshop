@@ -1,7 +1,7 @@
 {
   "legend": "Plasma",
   "url": "https://github.com/BIDS/colormap/blob/master/colormaps.py",
-  "presentation_url": "https://www.youtube.com/watch?list=PLYx7XA2nY5Gcpabmu61kKcToLz0FapmHu&v=xAoljeRJ3lU",
+  "presentationUrl": "https://www.youtube.com/watch?list=PLYx7XA2nY5Gcpabmu61kKcToLz0FapmHu&v=xAoljeRJ3lU",
   "colors": [
     "rgb(13, 8, 135)",
     "rgb(16, 7, 136)",

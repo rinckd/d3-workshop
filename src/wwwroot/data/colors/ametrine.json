@@ -1,7 +1,7 @@
 {
   "legend": "Ametrine",
   "url": "https://github.com/ashao/matlab/blob/master/external/ametrine.m",
-  "theoretical_paper_url": "https://www.osapublishing.org/oe/abstract.cfm?uri=oe-21-8-9862",
+  "theoreticalPaperUrl": "https://www.osapublishing.org/oe/abstract.cfm?uri=oe-21-8-9862",
   "colors":
   [
     "rgb(30, 60, 151)",
