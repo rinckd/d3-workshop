@@ -42,7 +42,7 @@
   var path = svg.append('path')
     .attr('d', line(pointData))
     .attr('stroke-width', 22)
-    .attr('stroke', 'rgb(47,54,169')
+    .attr('stroke', 'rgb(47,54,169)')
     .attr('fill', 'none');
 
   var totalLength = path.node().getTotalLength();
