@@ -34,14 +34,8 @@ You'll want to select the 'time-series' ID in d3. That will give you a nice fres
 - Heat Map. ColorBrewer.
 
 
-##TODO:
-d3.js and ES6
-Angular 2
-
-
 ##Presentation Slides: 
 Are here:
 [https://github.com/rinckd/d3-workshop/blob/master/Presentation_Slides.pdf](https://github.com/rinckd/d3-workshop/blob/master/Presentation_Slides.pdf)
 
 
-~Still a work in progress! Stay Tuned
