@@ -1,4 +1,7 @@
-# Getting Started
+# D3 Workshop
+
+## This was a workshop I taught 5 years ago. 
+It is deprecated, and the javascript world has certainly moved on from here. That said, the color theory slides and general outline still stand the test of time.
 
 ## Prerequisites
 
